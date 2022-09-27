@@ -25,10 +25,8 @@ public class Contact extends AbstractEntity {
     @Nonnull
     private String lastName = "";
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
     @NotNull
-    @JsonIgnoreProperties({ "employees" })
+    @ManyToOne
     @Nonnull
     private Company company;
 
