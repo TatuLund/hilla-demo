@@ -101,8 +101,7 @@ export class ListView extends View {
   // requestUpdate is function from Lit to trigger re-rending of the component
   // we set grid.dataProvider to null in order to invalidate it so that data is fully refreshed
   private handleDataChange() {
-    this.grid.dataProvider=null;
-    this.requestUpdate();
+    this.grid.clearCache();
   }
 
   // This is callback of the dataprovider, Grid requests a new page of data when user
