@@ -28,9 +28,9 @@ public class CrmEndpoint {
     private CompanyRepository companyRepository;
     private StatusRepository statusRepository;
 
-    class PageResponse<T> {
+    class PageResponse {
         @Nonnull
-        public List<@Nonnull T> content;
+        public List<@Nonnull Contact> content;
         @Nonnull
         public Long size;
     }
@@ -57,9 +57,9 @@ public class CrmEndpoint {
     }
 
     @Nonnull
-    public PageResponse<Contact> getPage(int page, int pageSize, String filter) {
+    public PageResponse getPage(int page, int pageSize, String filter) {
         var dbPage = contactRepository.findAllByEmailContainsIgnoreCase(filter, PageRequest.of(page, pageSize));
-        var response = new PageResponse<Contact>();
+        var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
 
@@ -67,31 +67,31 @@ public class CrmEndpoint {
     }
 
     @Nonnull
-    public PageResponse<Contact> getPageByCompanyAndStatus(int page, int pageSize, String companyName, String statusName) {
+    public PageResponse getPageByCompanyAndStatus(int page, int pageSize, String companyName, String statusName) {
         Company company = companyRepository.findByName(companyName);
         Status status = statusRepository.findByName(statusName);
         var dbPage = contactRepository.findAllByCompanyAndStatus(company, status, PageRequest.of(page, pageSize));
-        var response = new PageResponse<Contact>();
+        var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();        
         return response;
     }
 
     @Nonnull
-    public PageResponse<Contact> getPageByCompany(int page, int pageSize, String companyName) {
+    public PageResponse getPageByCompany(int page, int pageSize, String companyName) {
         Company company = companyRepository.findByName(companyName);
         var dbPage = contactRepository.findAllByCompany(company,  PageRequest.of(page, pageSize));
-        var response = new PageResponse<Contact>();
+        var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();        
         return response;
     }
  
     @Nonnull
-    public PageResponse<Contact> getPageByStatus(int page, int pageSize, String statusName) {
+    public PageResponse getPageByStatus(int page, int pageSize, String statusName) {
         Status status = statusRepository.findByName(statusName);
         var dbPage = contactRepository.findAllByStatus(status,  PageRequest.of(page, pageSize));
-        var response = new PageResponse<Contact>();
+        var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();        
         return response;
@@ -118,7 +118,6 @@ public class CrmEndpoint {
     @Nonnull
     public CrmData getCrmData() {
         var crmData = new CrmData();
-        // crmData.contacts = contactRepository.findAll();
         crmData.companies = companyRepository.findAll();
         crmData.statuses = statusRepository.findAll();
         return crmData;
