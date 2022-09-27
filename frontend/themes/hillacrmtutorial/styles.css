@@ -1,9 +1,10 @@
 @import url('./views/list-view.css');
+@import url('./views/dashboard-view.css');
 
 [hidden] {
     display: none !important;
    }
    
 .h-full {
-    height: 98% !important;
+    height: calc(100% - var(--lumo-space-l)) !important;
 }

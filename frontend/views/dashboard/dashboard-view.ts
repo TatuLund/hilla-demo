@@ -19,14 +19,16 @@ export class DashboardView extends View {
       return html`<p>Loading stats...</p>`;
     } else {
       return html`
-      <vaadin-chart
-        @point-click=${this.companyClicked} 
-        tooltip
-        style="width: 500px" type="column" title="Company">
-        <vaadin-chart-series
-          .values=${dashboardViewStore.companyStats}
-        ></vaadin-chart-series>
-      </vaadin-chart>
+      <div class="chart-wrapper">
+        <vaadin-chart
+          @point-click=${this.companyClicked} 
+          tooltip
+          type="column" title="Company">
+          <vaadin-chart-series
+            .values=${dashboardViewStore.companyStats}
+          ></vaadin-chart-series>
+        </vaadin-chart>
+      </div>
     `;
     }
   }
@@ -36,14 +38,16 @@ export class DashboardView extends View {
       return html`<p>Loading stats...</p>`;
     } else {
       return html`
-      <vaadin-chart 
-        @point-click=${this.statusClicked} 
-        tooltip
-        style="width: 500px" type="pie" title="Status">
-        <vaadin-chart-series          
-          .values=${dashboardViewStore.statusStats}
-        ></vaadin-chart-series>
-      </vaadin-chart>
+      <div class="chart-wrapper" >
+        <vaadin-chart 
+          @point-click=${this.statusClicked} 
+          tooltip
+          type="pie" title="Status">
+          <vaadin-chart-series          
+            .values=${dashboardViewStore.statusStats}
+          ></vaadin-chart-series>
+        </vaadin-chart>
+      </div>
     `;
     }
   }
