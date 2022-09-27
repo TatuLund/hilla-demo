@@ -29,6 +29,7 @@ public class Company extends AbstractEntity {
         this.name = name;
     }
 
+    @Nullable
     public List<Contact> getEmployees() {
         return employees;
     }
