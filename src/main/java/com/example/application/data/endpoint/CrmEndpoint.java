@@ -30,7 +30,7 @@ public class CrmEndpoint {
 
     class PageResponse<T> {
         @Nonnull
-        public List<@Nonnull Contact> content;
+        public List<@Nonnull T> content;
         @Nonnull
         public Long size;
     }
@@ -43,8 +43,6 @@ public class CrmEndpoint {
     }
 
     public static class CrmData {
-        // @Nonnull
-        // public List<@Nonnull Contact> contacts;
         @Nonnull
         public List<@Nonnull Company> companies;
         @Nonnull
