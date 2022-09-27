@@ -1,0 +1,9 @@
+@import url('./views/list-view.css');
+
+[hidden] {
+    display: none !important;
+   }
+   
+.h-full {
+    height: 98% !important;
+}
