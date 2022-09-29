@@ -1,4 +1,4 @@
-import { html, HTMLTemplateResult } from 'lit';
+import { html, HTMLTemplateResult, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { Layout } from './views/view';
 import '@vaadin/app-layout';
@@ -6,7 +6,6 @@ import '@vaadin/app-layout/vaadin-drawer-toggle';
 import { uiStore } from './stores/app-store';
 import '@vaadin/icon'
 import '@vaadin/icons'
-
 import { ViewRoute, views } from './routes';
  
 @customElement('main-layout')
@@ -31,20 +30,6 @@ export class MainLayout extends Layout {
           <div class="flex flex-col h-full m-l spacing-b-s ">
             ${views.map(
               (view) => this.createMenuItem(view)
-              //   if (view.skipMenu) {
-              //     return html``;
-              //   } else {
-              //     const index = view.path.indexOf(":");
-              //     var path : string;
-              //     // Strip possible route paramters
-              //     if (index > 0) {
-              //        path = view.path.substring(0,view.path.indexOf(":"));
-              //     } else {
-              //        path = view.path;
-              //     }
-              //     return html` <a href=${path}><vaadin-icon class="m-s" icon="${view.icon}"></vaadin-icon> ${view.title} </a> `;
-              //   }
-              // }
             )}
           </div>
         </div>
@@ -57,7 +42,7 @@ export class MainLayout extends Layout {
  
   createMenuItem(view: ViewRoute) : HTMLTemplateResult {
     if (view.skipMenu) {
-      return html``;
+      return html`${nothing}`;
     } else {
       const index = view.path.indexOf(":");
       var path : string;

@@ -6,12 +6,22 @@ import "@vaadin/notification";
 import "@vaadin/charts/src/vaadin-chart-series";
 import { dashboardViewStore } from "./dashboard-view-store";
 import { uiStore } from "Frontend/stores/app-store";
+import { Chart } from "@vaadin/charts";
+import type { Options } from 'highcharts';
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
   connectedCallback() {
     super.connectedCallback();
     this.classList.add("flex", "flex-col", "items-center", "pt-xl");
+  }
+
+  tooltipFormatter : Options = {
+    tooltip: {
+      formatter: function() {
+        return this.point.name +": <b>" + this.point.y + "</b>";
+      }
+    }
   }
 
   getCompanyStats() {
@@ -23,6 +33,7 @@ export class DashboardView extends View {
         <vaadin-chart
           @point-click=${this.companyClicked} 
           tooltip
+          .additionalOptions=${this.tooltipFormatter}
           type="column" title="Company">
           <vaadin-chart-series
             .values=${dashboardViewStore.companyStats}
@@ -42,6 +53,7 @@ export class DashboardView extends View {
         <vaadin-chart 
           @point-click=${this.statusClicked} 
           tooltip
+          .additionalOptions=${this.tooltipFormatter}
           type="pie" title="Status">
           <vaadin-chart-series          
             .values=${dashboardViewStore.statusStats}
