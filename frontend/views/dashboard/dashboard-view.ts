@@ -11,11 +11,6 @@ import type { Options } from 'highcharts';
 @customElement("dashboard-view")
 export class DashboardView extends View {
 
-  @query("#chart1")
-  chart1! : any;
-  @query("#chart2")
-  chart2! : any;
-  
   connectedCallback() {
     super.connectedCallback();
     this.classList.add("flex", "flex-col", "items-center", "pt-xl");
