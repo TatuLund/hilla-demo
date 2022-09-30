@@ -1,6 +1,7 @@
 import "@vaadin/text-field";
 import "@vaadin/button";
 import "@vaadin/grid";
+import "@vaadin/vertical-layout";
 import "@vaadin/grid/vaadin-grid-column";
 import { html } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
@@ -11,6 +12,7 @@ import "@vaadin/notification";
 import { uiStore } from "Frontend/stores/app-store";
 import { ContactForm } from "./contact-form";
 import { Grid, GridDataProviderCallback, GridDataProviderParams } from "@vaadin/grid";
+import { columnBodyRenderer, GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
 
@@ -67,9 +69,14 @@ export class ListView extends View {
           .selectedItems=${[listViewStore.selectedContact]}
           @active-item-changed=${this.handleGridSelection}
              >
-          <vaadin-grid-column path="firstName" auto-width>
+          <vaadin-grid-column
+            header="Contact"
+            .hidden=${!this.narrow}
+            ${columnBodyRenderer(this.contactRenderer, [])}
+          ></vaadin-grid-column>
+         <vaadin-grid-column .hidden=${this.narrow} path="firstName" auto-width>
             </vaadin-grid-column>
-          <vaadin-grid-column path="lastName" auto-width>
+          <vaadin-grid-column .hidden=${this.narrow} path="lastName" auto-width>
             </vaadin-grid-column>
           <vaadin-grid-column .hidden=${this.narrow} path="email" auto-width>
             </vaadin-grid-column>
@@ -80,6 +87,7 @@ export class ListView extends View {
             auto-width
           ></vaadin-grid-column>
           <vaadin-grid-column
+            .hidden=${this.narrow}
             path="company.name"
             auto-width
             header="Company"
@@ -171,6 +179,29 @@ export class ListView extends View {
     });
     resizeObserver.observe(this);
   }
+
+  private contactRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => {
+    return html`
+      <vaadin-vertical-layout style="line-height: var(--lumo-line-height-m);">
+        <span style="width: 100%; display: flex">
+          ${contact.firstName} ${contact.lastName}
+          <span style="margin-left: auto; font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);">
+            ${contact.status.name}
+          </span>
+        </span>
+        <span
+          style="font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);"
+        >
+          ${contact.email}
+        </span>
+        <span
+          style="font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);"
+        >
+          ${contact.company.name}
+        </span>
+      </vaadin-vertical-layout>
+    `;
+  };
 
   // If user enters text to email filter, we reset other filters
   // dataprovider needs to be invalidated to fetch new data
