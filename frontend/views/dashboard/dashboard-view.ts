@@ -1,21 +1,29 @@
 import { html } from "lit";
-import { customElement }  from "lit/decorators.js"
+import { customElement, query }  from "lit/decorators.js"
 import { View } from "../view";
 import "@vaadin/charts";
 import "@vaadin/notification";
 import "@vaadin/charts/src/vaadin-chart-series";
 import { dashboardViewStore } from "./dashboard-view-store";
 import { uiStore } from "Frontend/stores/app-store";
-import { Chart } from "@vaadin/charts";
 import type { Options } from 'highcharts';
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
+
+  @query("#chart1")
+  chart1! : any;
+  @query("#chart2")
+  chart2! : any;
+  
   connectedCallback() {
     super.connectedCallback();
     this.classList.add("flex", "flex-col", "items-center", "pt-xl");
   }
 
+  // Options can be used for many kinds of advanced configuration settings
+  // for vaadin-chart. The vaadin-chart has some attributes and 
+  // properties for quick configuration.
   tooltipFormatter : Options = {
     tooltip: {
       formatter: function() {
@@ -25,7 +33,7 @@ export class DashboardView extends View {
   }
 
   getCompanyStats() {
-    if (dashboardViewStore.companyStats.length === 0) {
+    if (dashboardViewStore.contactCount === 0) {
       return html`<p>Loading stats...</p>`;
     } else {
       return html`
@@ -45,7 +53,7 @@ export class DashboardView extends View {
   }
 
   getStatusStats() {
-    if (dashboardViewStore.statusStats.length === 0) {
+    if (dashboardViewStore.contactCount === 0) {
       return html`<p>Loading stats...</p>`;
     } else {
       return html`
@@ -81,12 +89,14 @@ export class DashboardView extends View {
     window.location.assign("none/"+e.detail.point.point.name);
   }
 
+  // vaadin-notification open state is bound to uiStore.message.open
+  // The rest of the logic is in ui-store.ts
   render() {
     return html`
     <div class="m-m p-s border rounded-m text-primary text-xl font-bold">
       ${dashboardViewStore.contactCount} contacts
     </div>
-    <div class="m-m -p-s shadow-m flex flex-row flex-wrap">
+    <div class="dashboard-wrapper m-m p-s shadow-m flex flex-row flex-wrap">
     ${this.getCompanyStats()}
     ${this.getStatusStats()}
     </div>

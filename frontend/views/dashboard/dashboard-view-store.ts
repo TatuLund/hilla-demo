@@ -1,5 +1,4 @@
 import { crmStore } from 'Frontend/stores/app-store';
-import { CrmStore } from 'Frontend/stores/crm-store';
 import { makeAutoObservable } from 'mobx';
 import type { PointOptionsObject } from 'highcharts';
 

@@ -1,4 +1,5 @@
 import { Commands, Context, Route, Router } from '@vaadin/router';
+import './views/dashboard/dashboard-view';
 import './views/list/list-view';
 import "./main-layout.ts";
 import "./views/login/login-view";
@@ -26,9 +27,6 @@ export const views: ViewRoute[] = [
     component: 'dashboard-view',
     icon: 'vaadin:chart',
     title: 'Dashboard',
-    action: async () => {
-      await import('./views/dashboard/dashboard-view');
-    },
   },
   {
     path: '/:company?/:status?',

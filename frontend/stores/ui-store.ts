@@ -69,6 +69,9 @@ export class UiStore {
         this.showMessage(message, true);
     }
 
+    // This will create a message. If it is observed by possible vaadin-notification
+    // component in the view, message is shown. See dashboard-view.ts and list-view.ts
+    // render function for details.
     private showMessage(text: string, error: boolean) {
         this.message = new Message(text, error, true);
         setTimeout(() => runInAction(() => (this.message = new Message())), 5000);
@@ -97,6 +100,8 @@ export class UiStore {
         }
     }
 
+    // Check the current authorities using the checkAuthority endpoint method and updare
+    // the admin value accordingly
     async getAuthorities() {
         endpoint.checkAuthority().then(result => this.admin = result.includes("ROLE_ADMIN"));
     }

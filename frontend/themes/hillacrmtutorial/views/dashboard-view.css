@@ -7,4 +7,11 @@
     .chart-wrapper {
       width: 100%;
     }
-   }
+}
+
+@media (max-width: 1300px) {
+    
+  .dashboard-wrapper {
+    width: 90%;
+  }
+}

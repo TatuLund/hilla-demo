@@ -21,6 +21,8 @@ export class ListView extends View {
   @query("#grid")
   grid! : Grid<Contact>;
 
+  narrow = false;
+
   // Process the url parameters
   onBeforeEnter(location: RouterLocation) { 
     if (location.params.company) {
@@ -69,9 +71,10 @@ export class ListView extends View {
             </vaadin-grid-column>
           <vaadin-grid-column path="lastName" auto-width>
             </vaadin-grid-column>
-          <vaadin-grid-column path="email" auto-width>
+          <vaadin-grid-column .hidden=${this.narrow} path="email" auto-width>
             </vaadin-grid-column>
           <vaadin-grid-column
+            .hidden=${this.narrow}
             path="status.name"
             header="Status"
             auto-width
@@ -149,7 +152,24 @@ export class ListView extends View {
         this.classList.remove("editing");
       }
     });
-
+    // Setup resize observer to toggle narrow status of the Grid
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        if(entry.contentBoxSize) {
+          // animation frame is used here as debouncing method
+          requestAnimationFrame(() => {
+            if (this.grid.offsetWidth < 800) {
+              this.narrow = true;
+              this.requestUpdate();
+            } else {
+              this.narrow = false;
+              this.requestUpdate();
+            }
+          });
+        }
+      };
+    });
+    resizeObserver.observe(this);
   }
 
   // If user enters text to email filter, we reset other filters
