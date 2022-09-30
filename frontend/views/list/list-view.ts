@@ -183,19 +183,19 @@ export class ListView extends View {
   private contactRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => {
     return html`
       <vaadin-vertical-layout style="line-height: var(--lumo-line-height-m);">
-        <span style="width: 100%; display: flex">
+        <span class="w-full flex text-primary">
           ${contact.firstName} ${contact.lastName}
-          <span style="margin-left: auto; font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);">
+          <span theme="badge" class="ml-auto text-s">
             ${contact.status.name}
           </span>
         </span>
         <span
-          style="font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);"
+          class="text-s text-secondary"
         >
           ${contact.email}
         </span>
         <span
-          style="font-size: var(--lumo-font-size-s); color: var(--lumo-secondary-text-color);"
+          class="text-s"
         >
           ${contact.company.name}
         </span>
