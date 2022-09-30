@@ -36,6 +36,16 @@ export class ContactForm extends View {
   // - Note, elso update and delete end points are protected
   render() {
     const { model } = this.binder;
+    this.binder.for(model.date).addValidator({
+      message: "Date needs to be today or past",
+      validate: (date: string) => {
+        const today = new Date();
+        today.setDate(today.getDate() + 1);
+        const now = Date.parse(today.toDateString());
+        const other = Date.parse(date);
+        return other <= now;
+      },
+    });
     return html`
       <vaadin-text-field
         label="First name"

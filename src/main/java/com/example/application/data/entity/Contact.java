@@ -10,7 +10,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import dev.hilla.Nonnull;
 import com.example.application.data.AbstractEntity;
 
