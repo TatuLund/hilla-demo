@@ -148,7 +148,7 @@ public class CrmEndpoint {
 
     // Alternative method for checking admin access. The difference to @RolesAllowed is that this results
     // http error code 500, while @RolesAllowed 401. 401 will kick out the user.
-    private boolean isAdmin() {
+    private void isAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
             throw new RuntimeException("ADMIN privileges required to delete a contact");
