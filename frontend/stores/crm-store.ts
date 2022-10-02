@@ -17,7 +17,6 @@ export class CrmStore {
     statuses: Status[] = [];
     companyCounts: Record<string, number> = {};
     statusCounts: Record<string, number> = {};
-    // contacts: Contact[] | undefined = undefined;
     count = 0;
 
     constructor() {
@@ -25,7 +24,6 @@ export class CrmStore {
             this,
             {
                 initFromServer: false,
-                // contacts: observable.shallow,
                 companies: observable.shallow,
                 statuses: observable.shallow,
                 companyCounts: observable.shallow,

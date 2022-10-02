@@ -12,10 +12,17 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Lazy loading data from server
 - Using server side filterign of data
 - Securing statelss Hilla app using Spring Security
-- Demonstrating role based authorities
-- Theming using utility classes
+- Demonstrating role based authorities, method level end point security
+- Styling using Lumo utility classes
 - Handling url parameters of the route
-- Navigating with url parameters withing the application
+- Navigating with url parameters within the application
+- Using renderer function in vaadin-grid
+- Creating responsive vaadin-grid using ResizeObserver etc.
+- Responsive CSS using media queries
+- Setting tooltip formatter using additionalOptions for vaadin-charts
+- Using Lumo Badge
+- USing custom validator in binder
+- Theming with Lumo CSS custom properties
 
 ## Before running
 
