@@ -1,15 +1,21 @@
-
 import { uiStore } from 'Frontend/stores/app-store';
 import { html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { nothing } from 'lit-html';
 import '@vaadin/login/vaadin-login-form';
 import { View } from '../view';
+import { Router } from '@vaadin/router';
 
 @customElement('login-view')
 export class LoginView extends View {
     @state()
     private error = false;
+
+    onBeforeEnter() {
+        if (uiStore.loggedIn) {
+            Router.go(sessionStorage.getItem("login-redirect-path") || "/");
+        }
+    }
 
     connectedCallback() {
         super.connectedCallback();

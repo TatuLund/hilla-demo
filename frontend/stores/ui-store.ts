@@ -3,7 +3,7 @@ import {
     login as serverLogin,
     logout as serverLogout,
 } from "@hilla/frontend";
-import { crmStore } from "./app-store";
+import { crmStore, uiStore } from "./app-store";
 import {
     ConnectionState,
     ConnectionStateStore,
@@ -82,7 +82,6 @@ export class UiStore {
         const result = await serverLogin(username, password);
         if (!result.error) {
             this.setLoggedIn(true);
-            this.getAuthorities();
         } else {
             throw new Error(result.errorMessage || 'Login failed');
         }

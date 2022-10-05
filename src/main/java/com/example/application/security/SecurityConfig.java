@@ -33,12 +33,12 @@ public class SecurityConfig extends VaadinWebSecurity {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
 
-        setLoginView(http, "/login", "/");
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         setStatelessAuthentication(http,
                 new SecretKeySpec(Base64.getDecoder().decode(appSecret), JwsAlgorithms.HS256),
-                "com.example.application");        
+                "com.example.application");
+        setLoginView(http, "/login", "/");
     }
 
     @Override

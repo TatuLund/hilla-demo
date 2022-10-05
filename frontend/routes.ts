@@ -10,9 +10,11 @@ import { autorun } from 'mobx';
 export type ViewRoute = Route & { skipMenu?: boolean; icon?: string; title?: string; children?: ViewRoute[] };
 
 const authGuard = async (context: Context, commands: Commands) => {
+  if (location.pathname !== "/login") {
+    sessionStorage.setItem("login-redirect-path", context.pathname);
+  }
   if (!uiStore.loggedIn) {
     // Save requested path
-    sessionStorage.setItem("login-redirect-path", context.pathname);
     return commands.redirect("/login");
   }
   return undefined;
@@ -60,8 +62,8 @@ autorun(() => {
   } else {
     if (location.pathname !== "/login") {
       sessionStorage.setItem("login-redirect-path", location.pathname);
+      Router.go("/login");
     }
-    Router.go("/login");
   }
 });
 

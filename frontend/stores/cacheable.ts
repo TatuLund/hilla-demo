@@ -19,7 +19,6 @@ export async function cacheable<T>(
         const cached = cache[key];
         // use the cached data if available, otherwise the default value.
         result = result = cached === undefined ? defaultValue : cached;
-
     }
 
     return result;

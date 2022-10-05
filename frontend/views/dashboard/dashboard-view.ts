@@ -7,6 +7,7 @@ import "@vaadin/charts/src/vaadin-chart-series";
 import { dashboardViewStore } from "./dashboard-view-store";
 import { uiStore } from "Frontend/stores/app-store";
 import type { Options } from 'highcharts';
+import { Router } from "@vaadin/router";
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
@@ -40,6 +41,7 @@ export class DashboardView extends View {
           type="column" title="Company">
           <vaadin-chart-series
             .values=${dashboardViewStore.companyStats}
+            title="Contacs by Company"
           ></vaadin-chart-series>
         </vaadin-chart>
       </div>
@@ -73,7 +75,7 @@ export class DashboardView extends View {
       uiStore.showError("Offline: Can't fetch new data.");
       return;
     }
-    window.location.assign(e.detail.point.point.name);
+    Router.go(e.detail.point.point.name);
   }
 
   private statusClicked(e : CustomEvent) {
@@ -81,7 +83,7 @@ export class DashboardView extends View {
       uiStore.showError("Offline: Can't fetch new data.");
       return;
     }
-    window.location.assign("none/"+e.detail.point.point.name);
+    Router.go("none/"+e.detail.point.point.name);
   }
 
   // vaadin-notification open state is bound to uiStore.message.open
