@@ -24,6 +24,7 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Using custom validator in binder
 - Theming with Lumo CSS custom properties
 - Date input in multiple formats
+- Localization / i18n of views and DatePicker
 
 ## Before running
 
