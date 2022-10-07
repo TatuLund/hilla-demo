@@ -10,6 +10,7 @@ import * as endpoint from 'Frontend/generated/CrmEndpoint';
 import { uiStore } from "./app-store";
 import { cacheable } from './cacheable';
 import ContactStatsModel from 'Frontend/generated/com/example/application/data/endpoint/CrmEndpoint/ContactStatsModel';
+import { lang } from './localization';
 
 export class CrmStore {
 
@@ -101,10 +102,10 @@ export class CrmStore {
                 add++;
             }
             this.updateStats(await endpoint.saveContact(contact), add);
-            uiStore.showSuccess("Contact saved.");
+            uiStore.showSuccess(lang.getText(uiStore.lang, "success-save"));
         } catch (e) {
             console.log(e);
-            uiStore.showError("Contact save failed.");
+            uiStore.showError(lang.getText(uiStore.lang, "error-save"));
         }
     }
 
@@ -113,12 +114,12 @@ export class CrmStore {
 
         try {
             await endpoint.deleteContact(contact.id);
-            uiStore.showSuccess("Contact deleted.");
+            uiStore.showSuccess(lang.getText(uiStore.lang, "success-delete"));
             this.count--;
             this.updateStats(await endpoint.saveContact(contact),-1);
         } catch (e) {
             console.log(e);
-            uiStore.showError("Failed to delete contact.");
+            uiStore.showError(lang.getText(uiStore.lang, "error-delete"));
         }
     }
 

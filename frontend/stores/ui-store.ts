@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable, observable, runInAction } from 'mobx';
 import {
     login as serverLogin,
     logout as serverLogout,
@@ -9,6 +9,7 @@ import {
     ConnectionStateStore,
 } from "@vaadin/common-frontend";
 import * as endpoint from 'Frontend/generated/AuthorityEndpoint';
+import { Language } from './localization';
 
 class Message {
     constructor(public text = '', public error = false, public open = false) { }
@@ -20,6 +21,7 @@ export class UiStore {
     offline = false;
     admin = false;
     connectionStateStore?: ConnectionStateStore;
+    lang = "en";
 
     // Listen connection state changes
     connectionStateListener = () => {
@@ -52,6 +54,7 @@ export class UiStore {
         makeAutoObservable(
           this,
           {
+            lang: observable,
             connectionStateListener: false,
             connectionStateStore: false,
             setupOfflineListener: false,

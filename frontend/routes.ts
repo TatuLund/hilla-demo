@@ -28,13 +28,13 @@ export const views: ViewRoute[] = [
     path: 'dashboard',
     component: 'dashboard-view',
     icon: 'vaadin:chart',
-    title: 'Dashboard',
+    title: 'menu-dashboard',
   },
   {
     path: '/:company?/:status?',
     component: 'list-view',
     icon: 'vaadin:user',
-    title: 'Contact list',
+    title: 'menu-contacts',
   },
 
 ];

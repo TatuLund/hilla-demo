@@ -41,6 +41,7 @@ public class Contact extends AbstractEntity {
 
     @PastOrPresent
     @Nonnull
+    @NotNull
     private LocalDate date;
 
     @Override

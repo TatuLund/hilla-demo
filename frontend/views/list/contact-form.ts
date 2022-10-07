@@ -15,6 +15,7 @@ import { DatePicker, DatePickerDate } from '@vaadin/date-picker';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import { pastOrPresentValidator } from 'Frontend/util/validators';
+import { lang } from 'Frontend/stores/localization';
 
 @customElement('contact-form')
 export class ContactForm extends View {
@@ -53,6 +54,22 @@ export class ContactForm extends View {
     };
   }
 
+  updated() {
+    this.datePicker.i18n.monthNames = lang.getMonths(uiStore.lang);
+    this.datePicker.i18n.weekdays = lang.getWeekdays(uiStore.lang, false);
+    this.datePicker.i18n.weekdaysShort = lang.getWeekdays(uiStore.lang, true);
+    this.datePicker.i18n.calendar = lang.getText(uiStore.lang, "dp-calendar");
+    this.datePicker.i18n.today = lang.getText(uiStore.lang, "dp-today");
+    this.datePicker.i18n.cancel = lang.getText(uiStore.lang, "dp-cancel");
+    this.datePicker.i18n.clear = lang.getText(uiStore.lang, "dp-clear");
+    this.datePicker.i18n.clear = lang.getText(uiStore.lang, "dp-week");
+    if (uiStore.lang === "fi") {
+      this.datePicker.i18n.firstDayOfWeek=1;
+    } else {
+      this.datePicker.i18n.firstDayOfWeek=0;
+    }
+  }
+
   @state()
   private loading = false;
 
@@ -74,29 +91,25 @@ export class ContactForm extends View {
     this.binder.for(model.date).addValidator(pastOrPresentValidator);
     return html`
       <vaadin-text-field
-        label="First name"
+        label=${lang.getText(uiStore.lang,"first-name")}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
-        theme="label-left"
         ${field(model.firstName)}
       ></vaadin-text-field>
       <vaadin-text-field
-        label="Last name"
+        label=${lang.getText(uiStore.lang,"last-name")}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
-        theme="label-left"
         ${field(model.lastName)}
       ></vaadin-text-field>
       <vaadin-text-field
-        label="Email"
+        label=${lang.getText(uiStore.lang,"email")}
         ?readonly=${!uiStore.isAdmin()}
         ?disabled=${uiStore.offline}
-        theme="label-left"
-        style="width: 100%"
         ${field(model.email)}
       ></vaadin-text-field>
       <vaadin-combo-box
-        label="Company"
+        label=${lang.getText(uiStore.lang,"company")}
         .items=${crmStore.companies}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
@@ -105,7 +118,7 @@ export class ContactForm extends View {
       >
       </vaadin-combo-box>
       <vaadin-combo-box
-        label="Status"
+        label=${lang.getText(uiStore.lang,"status")}
         .items=${crmStore.statuses}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
@@ -114,7 +127,9 @@ export class ContactForm extends View {
       ></vaadin-combo-box>
       <vaadin-date-picker
         id="datepicker"
-        label="Date"
+        label=${lang.getText(uiStore.lang,"date")}
+        auto-open-disabled
+        clear-button-visible
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         ${field(model.date)}
@@ -127,7 +142,7 @@ export class ContactForm extends View {
           ?disabled=${!this.binder.dirty || this.binder.invalid || uiStore.offline || this.loading || !uiStore.isAdmin()}
         >
         <vaadin-icon icon="vaadin:disc"></vaadin-icon>
-          ${this.binder.value.id ? "Save" : "Create"}
+          ${this.binder.value.id ? lang.getText(uiStore.lang,"button-save") : lang.getText(uiStore.lang,"button-create")}
         </vaadin-button>
         <vaadin-button
           theme="error"
@@ -135,10 +150,10 @@ export class ContactForm extends View {
           ?disabled=${!this.binder.value.id || uiStore.offline || this.loading || !uiStore.isAdmin() }
         >
           <vaadin-icon icon="vaadin:trash"></vaadin-icon>
-          Delete
+          ${lang.getText(uiStore.lang,"button-delete")}
         </vaadin-button>
         <vaadin-button theme="tertiary" @click=${listViewStore.cancelEdit}>
-          Cancel
+        ${lang.getText(uiStore.lang,"button-cancel")}
         </vaadin-button>
       </div>
     `;

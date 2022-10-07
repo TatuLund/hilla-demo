@@ -8,6 +8,7 @@ import { dashboardViewStore } from "./dashboard-view-store";
 import { uiStore } from "Frontend/stores/app-store";
 import type { Options } from 'highcharts';
 import { Router } from "@vaadin/router";
+import { lang } from "Frontend/stores/localization";
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
@@ -20,12 +21,20 @@ export class DashboardView extends View {
   // Options can be used for many kinds of advanced configuration settings
   // for vaadin-chart. The vaadin-chart has some attributes and 
   // properties for quick configuration.
-  tooltipFormatter : Options = {
-    tooltip: {
-      formatter: function() {
-        return this.point.name +": <b>" + this.point.y + "</b>";
+  getChartOptions() : Options {
+    const options : Options = {
+      tooltip: {
+        formatter: function() {
+          return this.point.name +": <b>" + this.point.y + "</b>";
+        }
+      },
+      yAxis: {
+        title: {
+          text: lang.getText(uiStore.lang, "dashboard-yaxis")
+        }
       }
     }
+    return options;
   }
 
   getCompanyStats() {
@@ -37,11 +46,12 @@ export class DashboardView extends View {
         <vaadin-chart
           @point-click=${this.companyClicked} 
           tooltip
-          .additionalOptions=${this.tooltipFormatter}
-          type="column" title="Company">
+          .additionalOptions=${this.getChartOptions()}
+          type="column" 
+          title=${lang.getText(uiStore.lang, "company")}>
           <vaadin-chart-series
             .values=${dashboardViewStore.companyStats}
-            title="Contacs by Company"
+            title=${lang.getText(uiStore.lang, "dashboard-contacts-company")}
           ></vaadin-chart-series>
         </vaadin-chart>
       </div>
@@ -58,8 +68,9 @@ export class DashboardView extends View {
         <vaadin-chart 
           @point-click=${this.statusClicked} 
           tooltip
-          .additionalOptions=${this.tooltipFormatter}
-          type="pie" title="Status">
+          .additionalOptions=${this.getChartOptions()}
+          type="pie"
+          title=${lang.getText(uiStore.lang, "status")}>
           <vaadin-chart-series          
             .values=${dashboardViewStore.statusStats}
           ></vaadin-chart-series>
@@ -72,7 +83,7 @@ export class DashboardView extends View {
   // Navigate to ListView using company as url parameter
   private companyClicked(e : CustomEvent) {
     if (uiStore.offline) {
-      uiStore.showError("Offline: Can't fetch new data.");
+      uiStore.showError(lang.getText(uiStore.lang, "error-offline"));
       return;
     }
     Router.go(e.detail.point.point.name);
@@ -80,7 +91,7 @@ export class DashboardView extends View {
 
   private statusClicked(e : CustomEvent) {
     if (uiStore.offline) {
-      uiStore.showError("Offline: Can't fetch new data.");
+      uiStore.showError(lang.getText(uiStore.lang, "error-offline"));
       return;
     }
     Router.go("none/"+e.detail.point.point.name);
@@ -91,7 +102,7 @@ export class DashboardView extends View {
   render() {
     return html`
     <div class="m-m p-s border rounded-m text-primary text-xl font-bold">
-      ${dashboardViewStore.contactCount} contacts
+      ${dashboardViewStore.contactCount} ${lang.getText(uiStore.lang, "dashboard-contacts")}
     </div>
     <div class="dashboard-wrapper m-m p-s shadow-m flex flex-row flex-wrap">
     ${this.getCompanyStats()}

@@ -8,7 +8,7 @@ function pastOrPresent(date : string) : boolean {
     return other <= now;    
   }
 
-const dateError = "Date needs to be today or past";
+const dateError = "date is required, date can't be in future";
 
 export const pastOrPresentValidator : Validator<string> = {
     message: dateError,

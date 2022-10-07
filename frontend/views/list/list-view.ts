@@ -15,6 +15,7 @@ import { Grid, GridDataProviderCallback, GridDataProviderParams } from "@vaadin/
 import { columnBodyRenderer, GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
+import { lang } from "Frontend/stores/localization";
 
 @customElement('list-view')
 export class ListView extends View {
@@ -45,7 +46,7 @@ export class ListView extends View {
       <div class="m-m toolbar gap-s">
         <vaadin-text-field
           id="email"
-          placeholder="Filter by e-mail"
+          placeholder=${lang.getText(uiStore.lang,"filter-email")}
           .value=${listViewStore.filterText}
           @input=${this.updateFilter}
           clear-button-visible
@@ -57,7 +58,7 @@ export class ListView extends View {
           .disabled=${uiStore.offline}
           @click=${listViewStore.editNew}>
           <vaadin-icon slot="suffix" icon="vaadin:plus"></vaadin-icon>
-          Add Contact
+          ${lang.getText(uiStore.lang,"button-add")}
         </vaadin-button>
       </div>
       <div class="flex se-m w-full h-full">
@@ -70,27 +71,39 @@ export class ListView extends View {
           @active-item-changed=${this.handleGridSelection}
              >
           <vaadin-grid-column
-            header="Contact"
+            header=${lang.getText(uiStore.lang,"contact")}
             .hidden=${!this.narrow}
             ${columnBodyRenderer(this.contactRenderer, [])}
           ></vaadin-grid-column>
-         <vaadin-grid-column .hidden=${this.narrow} path="firstName" auto-width>
-            </vaadin-grid-column>
-          <vaadin-grid-column .hidden=${this.narrow} path="lastName" auto-width>
-            </vaadin-grid-column>
-          <vaadin-grid-column .hidden=${this.narrow} path="email" auto-width>
-            </vaadin-grid-column>
+          <vaadin-grid-column 
+            .hidden=${this.narrow}
+            path="firstName"
+            auto-width
+            header=${lang.getText(uiStore.lang,"first-name")}
+          ></vaadin-grid-column>
+          <vaadin-grid-column 
+            .hidden=${this.narrow}
+            path="lastName" 
+            header=${lang.getText(uiStore.lang,"last-name")}
+            auto-width
+          ></vaadin-grid-column>
+          <vaadin-grid-column
+            .hidden=${this.narrow}
+            path="email"
+            header=${lang.getText(uiStore.lang,"email")}
+            auto-width
+          ></vaadin-grid-column>
           <vaadin-grid-column
             .hidden=${this.narrow}
             path="status.name"
-            header="Status"
+            header=${lang.getText(uiStore.lang,"status")}
             auto-width
           ></vaadin-grid-column>
           <vaadin-grid-column
             .hidden=${this.narrow}
             path="company.name"
             auto-width
-            header="Company"
+            header=${lang.getText(uiStore.lang,"company")}
           ></vaadin-grid-column>
         </vaadin-grid>
         <contact-form 
