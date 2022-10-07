@@ -28,7 +28,7 @@ export class CrmStore {
                 statuses: observable.shallow,
                 companyCounts: observable.shallow,
                 statusCounts: observable.shallow,
-                count: observable
+                count: observable,
             },
             { autoBind: true }
         );
