@@ -14,7 +14,7 @@ import { listViewStore } from './list-view-store';
 import { DatePicker, DatePickerDate } from '@vaadin/date-picker';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
-import { stringifyKey } from 'mobx/dist/internal';
+import { pastOrPresentValidator } from 'Frontend/util/validators';
 
 @customElement('contact-form')
 export class ContactForm extends View {
@@ -71,16 +71,7 @@ export class ContactForm extends View {
   // - Note, elso update and delete end points are protected
   render() {
     const { model } = this.binder;
-    this.binder.for(model.date).addValidator({
-      message: "Date needs to be today or past",
-      validate: (date: string) => {
-        const today = new Date();
-        today.setDate(today.getDate() + 1);
-        const now = Date.parse(today.toDateString());
-        const other = Date.parse(date);
-        return other <= now;
-      },
-    });
+    this.binder.for(model.date).addValidator(pastOrPresentValidator);
     return html`
       <vaadin-text-field
         label="First name"
