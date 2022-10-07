@@ -21,8 +21,9 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Responsive CSS using media queries
 - Setting tooltip formatter using additionalOptions for vaadin-charts
 - Using Lumo Badge
-- USing custom validator in binder
+- Using custom validator in binder
 - Theming with Lumo CSS custom properties
+- Date input in multiple formats
 
 ## Before running
 
