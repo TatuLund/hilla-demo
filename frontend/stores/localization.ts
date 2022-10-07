@@ -45,7 +45,9 @@ export class Lang {
             "dp-cancel": "Cancel",
             "dp-week": "Week",
             "dp-clear": "Clear",
-            "dp-calendar": "Calendar"
+            "dp-calendar": "Calendar",
+            "offline": "Offline",
+            "online": "Online"
         },
         "fi": {
             "fi": "Suomi",
@@ -79,7 +81,9 @@ export class Lang {
             "dp-cancel": "Peruuta",
             "dp-week": "Viikko",
             "dp-clear": "Tyhjennä",
-            "dp-calendar": "Kalenteri"
+            "dp-calendar": "Kalenteri",
+            "offline": "Ei verkkoyhteyttä",
+            "online": "Verkossa"
         }
     };
 

@@ -9,7 +9,7 @@ import '@vaadin/icons'
 import '@vaadin/select'
 import { ViewRoute, views } from './routes';
 import { lang, Language } from './stores/localization';
-import { ComboBoxChangeEvent, ComboBoxCustomValueSetEvent } from '@vaadin/combo-box';
+import { ComboBoxChangeEvent } from '@vaadin/combo-box';
 
 @customElement('main-layout')
 export class MainLayout extends Layout {
@@ -85,9 +85,9 @@ export class MainLayout extends Layout {
 
   indicatorIcon() : HTMLTemplateResult {
     if (uiStore.offline) {
-      return html`<vaadin-icon title="Offline" icon="vaadin:connect-o"></vaadin-icon>`;
+      return html`<vaadin-icon title=${lang.getText(uiStore.lang, "offline")} icon="vaadin:connect-o"></vaadin-icon>`;
     } else {
-      return html`<vaadin-icon title="Online" icon="vaadin:connect"></vaadin-icon>`;
+      return html`<vaadin-icon title=${lang.getText(uiStore.lang, "online")} icon="vaadin:connect"></vaadin-icon>`;
     }
   }
 }
