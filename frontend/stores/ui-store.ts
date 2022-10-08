@@ -9,7 +9,7 @@ import {
     ConnectionStateStore,
 } from "@vaadin/common-frontend";
 import * as endpoint from 'Frontend/generated/AuthorityEndpoint';
-import { Language } from './localization';
+import { Language } from '../util/localization';
 
 class Message {
     constructor(public text = '', public error = false, public open = false) { }

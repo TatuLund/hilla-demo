@@ -73,7 +73,7 @@ public class CrmEndpoint {
         var dbPage = contactRepository.findAllByCompanyAndStatus(company, status, PageRequest.of(page, pageSize));
         var response = new PageResponse();
         response.content = dbPage.getContent();
-        response.size = dbPage.getTotalElements();        
+        response.size = dbPage.getTotalElements();
         return response;
     }
 
@@ -83,7 +83,7 @@ public class CrmEndpoint {
         var dbPage = contactRepository.findAllByCompany(company,  PageRequest.of(page, pageSize));
         var response = new PageResponse();
         response.content = dbPage.getContent();
-        response.size = dbPage.getTotalElements();        
+        response.size = dbPage.getTotalElements();
         return response;
     }
  
@@ -93,7 +93,7 @@ public class CrmEndpoint {
         var dbPage = contactRepository.findAllByStatus(status,  PageRequest.of(page, pageSize));
         var response = new PageResponse();
         response.content = dbPage.getContent();
-        response.size = dbPage.getTotalElements();        
+        response.size = dbPage.getTotalElements();
         return response;
     }
     

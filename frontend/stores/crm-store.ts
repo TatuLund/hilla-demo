@@ -10,7 +10,7 @@ import * as endpoint from 'Frontend/generated/CrmEndpoint';
 import { uiStore } from "./app-store";
 import { cacheable } from './cacheable';
 import ContactStatsModel from 'Frontend/generated/com/example/application/data/endpoint/CrmEndpoint/ContactStatsModel';
-import { lang } from './localization';
+import { lang } from '../util/localization';
 
 export class CrmStore {
 

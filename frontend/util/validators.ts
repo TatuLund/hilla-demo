@@ -1,16 +1,17 @@
 import { Validator } from '@hilla/form';
 
-function pastOrPresent(date : string) : boolean {
+function pastOrPresentWeekdayAndRequired(date : string) : boolean {
     const today = new Date();
     today.setDate(today.getDate() + 1);
     const now = Date.parse(today.toDateString());
     const other = Date.parse(date);
-    return other <= now;    
+    const otherDate = new Date(other);
+    return (other <= now) && (otherDate.getDay() != 0) && (otherDate.getDay() != 6);    
   }
 
-const dateError = "date is required, date can't be in future";
+const dateError = "date is required, date can't be in future, date must be weekday";
 
-export const pastOrPresentValidator : Validator<string> = {
+export const pastOrPresentWeekdayAndRequiredValidator : Validator<string> = {
     message: dateError,
-    validate: (date: string) => pastOrPresent(date),
+    validate: (date: string) => pastOrPresentWeekdayAndRequired(date),
 }

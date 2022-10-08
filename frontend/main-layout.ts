@@ -8,7 +8,7 @@ import '@vaadin/icon'
 import '@vaadin/icons'
 import '@vaadin/select'
 import { ViewRoute, views } from './routes';
-import { lang, Language } from './stores/localization';
+import { lang, Language } from './util/localization';
 import { ComboBoxChangeEvent } from '@vaadin/combo-box';
 
 @customElement('main-layout')

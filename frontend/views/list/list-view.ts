@@ -15,7 +15,7 @@ import { Grid, GridDataProviderCallback, GridDataProviderParams } from "@vaadin/
 import { columnBodyRenderer, GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
-import { lang } from "Frontend/stores/localization";
+import { lang } from "Frontend/util/localization";
 
 @customElement('list-view')
 export class ListView extends View {

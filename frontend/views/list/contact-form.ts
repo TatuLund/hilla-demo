@@ -14,8 +14,8 @@ import { listViewStore } from './list-view-store';
 import { DatePicker, DatePickerDate } from '@vaadin/date-picker';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
-import { pastOrPresentValidator } from 'Frontend/util/validators';
-import { lang } from 'Frontend/stores/localization';
+import { pastOrPresentWeekdayAndRequiredValidator } from 'Frontend/util/validators';
+import { lang } from 'Frontend/util/localization';
 
 @customElement('contact-form')
 export class ContactForm extends View {
@@ -27,47 +27,14 @@ export class ContactForm extends View {
   private datePicker! : DatePicker;
 
   firstUpdated() {
-    const formatDateIso8601 = (dateParts: DatePickerDate): string => {
-      const { year, month, day } = dateParts;
-      const date = new Date(year, month, day);
+    const { model } = this.binder;
+    this.binder.for(model.date).addValidator(pastOrPresentWeekdayAndRequiredValidator);
 
-      return dateFnsFormat(date, 'yyyy-MM-dd');
-    };
-
-    // Allow the user to input the date using both the two digit
-    // and four digit year format.
-    const parseDateIso8601 = (inputValue: string): DatePickerDate => {
-      var date : Date;
-      if (inputValue.length > 8) {
-        date = dateFnsParse(inputValue, 'yyyy-MM-dd', new Date());
-      } else {
-        date = dateFnsParse(inputValue, 'yy-MM-dd', new Date());
-      }
-
-      return { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() };
-    };
-
-    this.datePicker.i18n = {
-      ...this.datePicker.i18n,
-      formatDate: formatDateIso8601,
-      parseDate: parseDateIso8601,
-    };
+    lang.setDatePickerFormatter(this.datePicker);
   }
 
   updated() {
-    this.datePicker.i18n.monthNames = lang.getMonths(uiStore.lang);
-    this.datePicker.i18n.weekdays = lang.getWeekdays(uiStore.lang, false);
-    this.datePicker.i18n.weekdaysShort = lang.getWeekdays(uiStore.lang, true);
-    this.datePicker.i18n.calendar = lang.getText(uiStore.lang, "dp-calendar");
-    this.datePicker.i18n.today = lang.getText(uiStore.lang, "dp-today");
-    this.datePicker.i18n.cancel = lang.getText(uiStore.lang, "dp-cancel");
-    this.datePicker.i18n.clear = lang.getText(uiStore.lang, "dp-clear");
-    this.datePicker.i18n.clear = lang.getText(uiStore.lang, "dp-week");
-    if (uiStore.lang === "fi") {
-      this.datePicker.i18n.firstDayOfWeek=1;
-    } else {
-      this.datePicker.i18n.firstDayOfWeek=0;
-    }
+    lang.updateDatePickerI18n(this.datePicker, uiStore.lang);
   }
 
   @state()
@@ -88,7 +55,6 @@ export class ContactForm extends View {
   // - Note, elso update and delete end points are protected
   render() {
     const { model } = this.binder;
-    this.binder.for(model.date).addValidator(pastOrPresentValidator);
     return html`
       <vaadin-text-field
         label=${lang.getText(uiStore.lang,"first-name")}
@@ -128,6 +94,7 @@ export class ContactForm extends View {
       <vaadin-date-picker
         id="datepicker"
         label=${lang.getText(uiStore.lang,"date")}
+        theme="weekend"
         auto-open-disabled
         clear-button-visible
         ?disabled=${uiStore.offline}

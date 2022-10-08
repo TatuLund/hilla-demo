@@ -8,7 +8,7 @@ import { dashboardViewStore } from "./dashboard-view-store";
 import { uiStore } from "Frontend/stores/app-store";
 import type { Options } from 'highcharts';
 import { Router } from "@vaadin/router";
-import { lang } from "Frontend/stores/localization";
+import { lang } from "Frontend/util/localization";
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
