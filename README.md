@@ -24,7 +24,9 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Using custom validator in binder
 - Theming with Lumo CSS custom properties
 - Date input in multiple formats
-- Localization / i18n of views and DatePicker
+- Localization / views
+- Localization of the DatePicker
+- Localization of the binder error messages using its interpolator callback
 
 ## Before running
 
@@ -53,8 +55,9 @@ mvn spring-boot:run
 | &nbsp;&nbsp;&nbsp;&nbsp;`index.ts`         | Frontend entrypoint, contains the client-side routing setup using [Vaadin Router](https://vaadin.com/router)                |
 | &nbsp;&nbsp;&nbsp;&nbsp;`main-layout.ts`   | Main layout Web Component, contains the navigation menu, uses [App Layout](https://vaadin.com/components/vaadin-app-layout) |
 | &nbsp;&nbsp;&nbsp;&nbsp;`views/`           | UI views Web Components (TypeScript)                                                                                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;`stores/`          | Stores, the business logic (TypeScript)                                                                                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;`util/`            | Custom validator and Localization (TypeScript)                                                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;`styles/`          | Styles directory (CSS)                                                                                                      |
-| `src/main/java/<groupId>/`                 | Server-side source directory, contains the server-side Java views                                                           |
 | &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                                           |
 
 ## What next?
