@@ -51,16 +51,16 @@ mvn spring-boot:run
 | Directory                                  | Description                                                                                                                 |
 | :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
 | `frontend/`                                | Client-side source directory                                                                                                |
-| &nbsp;&nbsp;&nbsp;&nbsp;`index.html`       | HTML template                                                                                                               |
+| &nbsp;&nbsp;&nbsp;&nbsp;`index.html`       | HTML template                                                                                                 |
 | &nbsp;&nbsp;&nbsp;&nbsp;`index.ts`         | Frontend entrypoint, contains the client-side routing setup using [Vaadin Router](https://vaadin.com/router)                |
 | &nbsp;&nbsp;&nbsp;&nbsp;`main-layout.ts`   | Main layout Web Component, contains the navigation menu, uses [App Layout](https://vaadin.com/components/vaadin-app-layout) |
 | &nbsp;&nbsp;&nbsp;&nbsp;`views/`           | UI views Web Components (TypeScript)                                                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;`stores/`          | Stores, the business logic (TypeScript)                                                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;`util/`            | Custom validator and Localization (TypeScript)                                                                                        |
-| &nbsp;&nbsp;&nbsp;&nbsp;`styles/`          | Styles directory (CSS)                                                                                                      |
-| `src/`                                     | Server-side source directory                                                                                                |
-| &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                                      | &nbsp;&nbsp;&nbsp;&nbsp; `data/`            | Entities and endpoints directory (Java)                                                                                               |
-     |
+| &nbsp;&nbsp;&nbsp;&nbsp;`styles/`          | Styles directory (CSS)                                                                                               |
+| `src/`                                     | Server-side source directory                                                                                           |
+| &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                          |
+| &nbsp;&nbsp;&nbsp;&nbsp; `data/`            | Entities and endpoints directory (Java)                                                                                              |
 
 ## What next?
 
