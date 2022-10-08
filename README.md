@@ -3,7 +3,7 @@
 This project was created from https://start.vaadin.com. It's a fully working Vaadin application that you continue developing locally.
 It has all the necessary dependencies and files to help you get going.
 
-The project is a standard Maven project, so you can import it to your IDE of choice. You'll need to have Java 8+ and Node.js 10+ installed.
+The project is a standard Maven project, so you can import it to your IDE of choice. You'll need to have Java 11/17 + and Node.js 16.14+ installed.
 
 To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
 
@@ -58,7 +58,9 @@ mvn spring-boot:run
 | &nbsp;&nbsp;&nbsp;&nbsp;`stores/`          | Stores, the business logic (TypeScript)                                                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;`util/`            | Custom validator and Localization (TypeScript)                                                                                        |
 | &nbsp;&nbsp;&nbsp;&nbsp;`styles/`          | Styles directory (CSS)                                                                                                      |
-| &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                                           |
+| `src/`                                     | Server-side source directory                                                                                                |
+| &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                                      | &nbsp;&nbsp;&nbsp;&nbsp; `data/`            | Entities and endpoints directory (Java)                                                                                               |
+     |
 
 ## What next?
 
