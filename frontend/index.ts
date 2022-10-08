@@ -1,3 +1,4 @@
+import { Binder } from '@hilla/form';
 import { Router } from '@vaadin/router';
 import { routes, ViewRoute } from "./routes";
 import { uiStore } from './stores/app-store';
@@ -13,5 +14,16 @@ window.addEventListener("vaadin-router-location-changed", (e) => {
     } else {
         document.title = lang.getText(uiStore.lang, "menu-title");
     }
-   });
-   
+});
+
+Binder.interpolateMessageCallback = (message, validator, binderNode) => {
+    // Try to find a translation for the specific type of validator
+    let key = `validationError.${validator.constructor.name}`;
+  
+    // Special case for DecimalMin and DecimalMax validators to use different message based on "inclusive" property
+    if (['validationError.DecimalMin', 'validationError.DecimalMax'].includes(key)) {
+      key += (validator as any).inclusive ? '.inclusive' : '.exclusive';
+    }
+  
+    return lang.getText(uiStore.lang, key);
+};

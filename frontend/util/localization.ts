@@ -50,7 +50,10 @@ export class Lang {
             "dp-clear": "Clear",
             "dp-calendar": "Calendar",
             "offline": "Offline",
-            "online": "Online"
+            "online": "Online",
+            "validationError.PastOrPresentWeekdayAndRequired": "date is required, date can't be in future, date must be weekday",
+            "validationError.NotEmpty": "input is required",
+            "validationError.Email": "input is not valid e-mail address"
         },
         "fi": {
             "fi": "Suomi",
@@ -86,7 +89,10 @@ export class Lang {
             "dp-clear": "Tyhjennä",
             "dp-calendar": "Kalenteri",
             "offline": "Ei verkkoyhteyttä",
-            "online": "Verkossa"
+            "online": "Verkossa",
+            "validationError.PastOrPresentWeekdayAndRequired": "päivämäärä vaadittu, päivämämäärä ei saa tulevaisuudessa, päivämäärä ei saa olla viikonloppuna",
+            "validationError.NotEmpty": "syöte ei saa olla tyhjä",
+            "validationError.Email": "syöte ei ole kelvollinen sähköpostiosoite"
         }
     };
 

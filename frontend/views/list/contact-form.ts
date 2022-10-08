@@ -11,10 +11,8 @@ import { Binder, field } from '@hilla/form';
 import ContactModel from 'Frontend/generated/com/example/application/data/entity/ContactModel';
 import { crmStore, uiStore } from 'Frontend/stores/app-store';
 import { listViewStore } from './list-view-store';
-import { DatePicker, DatePickerDate } from '@vaadin/date-picker';
-import dateFnsFormat from 'date-fns/format';
-import dateFnsParse from 'date-fns/parse';
-import { pastOrPresentWeekdayAndRequiredValidator } from 'Frontend/util/validators';
+import { DatePicker } from '@vaadin/date-picker';
+import { PastOrPresentWeekdayAndRequired } from 'Frontend/util/validators';
 import { lang } from 'Frontend/util/localization';
 
 @customElement('contact-form')
@@ -28,7 +26,7 @@ export class ContactForm extends View {
 
   firstUpdated() {
     const { model } = this.binder;
-    this.binder.for(model.date).addValidator(pastOrPresentWeekdayAndRequiredValidator);
+    this.binder.for(model.date).addValidator(new PastOrPresentWeekdayAndRequired());
 
     lang.setDatePickerFormatter(this.datePicker);
   }
