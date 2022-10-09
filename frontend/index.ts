@@ -12,7 +12,7 @@ window.addEventListener("vaadin-router-location-changed", (e) => {
     if (activeRoute.title) {
         document.title = lang.getText(uiStore.lang, activeRoute.title);
     } else {
-        document.title = lang.getText(uiStore.lang, "menu-title");
+        document.title = lang.getText(uiStore.lang, "main-title");
     }
 });
 

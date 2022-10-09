@@ -8,25 +8,19 @@ import '@vaadin/icon'
 import '@vaadin/icons'
 import '@vaadin/select'
 import { ViewRoute, views } from './routes';
-import { lang, Language } from './util/localization';
-import { ComboBoxChangeEvent } from '@vaadin/combo-box';
+import { lang } from './util/localization';
+import 'Frontend/components/language-switch'
 
 @customElement('main-layout')
 export class MainLayout extends Layout {
- connectedCallback() {
-   super.connectedCallback();
-   this.classList.add('flex', 'h-full', 'w-full');
- }
 
- @state()
- private languages: Language[] = [];
+  connectedCallback() {
+    super.connectedCallback();
+    this.classList.add('flex', 'h-full', 'w-full');
+  }
 
- async firstUpdated() {
-   this.languages = lang.getLanguages();
- } 
-
- // Generate menu in drawer from the routes
- render() {
+  // Generate menu in drawer from the routes
+  render() {
     return html`
       <vaadin-app-layout class="h-full w-full">
         <header slot="navbar" class="border-b border-contrast-30 w-full flex items-center px-m">
@@ -44,13 +38,7 @@ export class MainLayout extends Layout {
             ${views.map(
               (view) => this.createMenuItem(view)
             )}
-            <vaadin-combo-box
-              class="mt-auto"
-              @change=${this.languageChange}
-              .items=${this.languages}
-              item-label-path="name"
-              placeholder=${lang.getText(uiStore.lang, "main-language")}
-            ></vaadin-combo-box>
+            <language-switch class="mt-auto"></language-switch>
           </div>
         </div>
         <div class="h-full">
@@ -58,15 +46,8 @@ export class MainLayout extends Layout {
         </div>
       </vaadin-app-layout>
     `;
-   }
- 
-  languageChange(e : ComboBoxChangeEvent<Language>) {
-    const language = e.target.selectedItem;
-    if (language) {
-      uiStore.lang=language.key;
-    }
   }
-
+ 
   createMenuItem(view: ViewRoute) : HTMLTemplateResult {
     if (view.skipMenu) {
       return html`${nothing}`;

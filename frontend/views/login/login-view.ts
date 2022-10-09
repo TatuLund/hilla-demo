@@ -1,15 +1,20 @@
 import { uiStore } from 'Frontend/stores/app-store';
 import { html } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement, query, state } from 'lit/decorators.js';
 import { nothing } from 'lit-html';
 import '@vaadin/login/vaadin-login-form';
 import { View } from '../view';
 import { Router } from '@vaadin/router';
+import { lang } from 'Frontend/util/localization';
+import { LoginForm } from '@vaadin/login/vaadin-login-form';
+import 'Frontend/components/language-switch';
 
 @customElement('login-view')
 export class LoginView extends View {
     @state()
     private error = false;
+    @query("#login")
+    private loginForm! : LoginForm;
 
     onBeforeEnter() {
         if (uiStore.loggedIn) {
@@ -22,10 +27,15 @@ export class LoginView extends View {
         this.classList.add('flex', 'flex-col', 'items-center', 'justify-center');
     }
 
+    updated() {
+        lang.updateLoginFormI18n(this.loginForm, uiStore.lang);
+    }
+
     render() {
         return html`
-            <h1>Vaadin CRM</h1>
+            <h1>${lang.getText(uiStore.lang, "main-title")}</h1>
             <vaadin-login-form
+                id="login"
                 class="m-m p-s shadow-m"
                 no-forgot-password
                 @login=${this.login}
@@ -33,7 +43,8 @@ export class LoginView extends View {
                 ?disabled=${uiStore.offline}
             >
             </vaadin-login-form>
-            ${uiStore.offline ? html` <b>You are offline. Login is only available while online.</b> ` : nothing}
+            ${uiStore.offline ? html` <b>${lang.getText(uiStore.lang, "login-offline")}</b> ` : nothing}
+            <language-switch></language-switch>
         `;
     }
 

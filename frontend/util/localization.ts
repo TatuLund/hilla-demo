@@ -1,4 +1,5 @@
 import { DatePicker } from "@vaadin/date-picker";
+import { LoginForm } from "@vaadin/login/vaadin-login-form";
 import { setFormatter, updateI18n } from "./datepicker-util";
 
 type LocalizedText = Record<string, string>;
@@ -41,6 +42,7 @@ export class Lang {
             "dashboard-yaxis": "Count",
             "success-save": "Contact saved.",
             "success-delete": "Contact deleted.",
+            "login-offline": "You are offline. Login is only available while online.",
             "error-offline": "Offline: Can't fetch new data.",
             "error-delete": "Failed to delete contact.",
             "error-save": "Contact save failed.",
@@ -53,7 +55,14 @@ export class Lang {
             "online": "Online",
             "validationError.PastOrPresentWeekdayAndRequired": "date is required, date can't be in future, date must be weekday",
             "validationError.NotEmpty": "input is required",
-            "validationError.Email": "input is not valid e-mail address"
+            "validationError.Email": "input is not valid e-mail address",
+            "login-title": "Log in",
+            "login-username": "Username",
+            "login-password": "Password",
+            "login-submit": "Log in",
+            "login-forgotPassword": "Forgot password",
+            "login-error-title": "Incorrect username or password",
+            "login-error-message": "Check that you have entered the correct username and password and try again."
         },
         "fi": {
             "fi": "Suomi",
@@ -81,6 +90,7 @@ export class Lang {
             "success-save": "Yhteystieto tallennettu.",
             "success-delete": "Yhteystieto poistettu.",
             "error-offline": "Ei yhteyttä: Tietojen päivitys ei onnistu.",
+            "login-offline": "Ei verkkoyhteyttä. Kirjautuminen ei ole mahdollista.",
             "error-delete": "Yhteystiedon poisto ei onnistunut.",
             "error-save": "Yhteystiedon tallennus ei onnistunut.",
             "dp-today": "Tänään",
@@ -92,7 +102,14 @@ export class Lang {
             "online": "Verkossa",
             "validationError.PastOrPresentWeekdayAndRequired": "päivämäärä vaadittu, päivämämäärä ei saa tulevaisuudessa, päivämäärä ei saa olla viikonloppuna",
             "validationError.NotEmpty": "syöte ei saa olla tyhjä",
-            "validationError.Email": "syöte ei ole kelvollinen sähköpostiosoite"
+            "validationError.Email": "syöte ei ole kelvollinen sähköpostiosoite",
+            "login-title": "Kirjautuminen",
+            "login-username": "Käyttäjä",
+            "login-password": "Salasana",
+            "login-submit": "Kirjaudu",
+            "login-forgotPassword": "Salasana unohtunut",
+            "login-error-title": "Väärä käyttäjä tai salasana",
+            "login-error-message": "Tarkista, että olet syöttänyt käyttäjän ja salasanan oikein."
         }
     };
 
@@ -218,6 +235,22 @@ export class Lang {
 
     updateDatePickerI18n(datePicker : DatePicker, key : string) {
         updateI18n(datePicker, key);
+    }
+
+    updateLoginFormI18n(loginForm : LoginForm, key : string) {
+        loginForm.i18n = {
+            form: {
+                title: this.getText(key, "login-title"),
+                username: this.getText(key, "login-username"),
+                password: this.getText(key, "login-password"),
+                submit: this.getText(key, "login-submit"),
+                forgotPassword: this.getText(key, "login-forgotPassword")
+            },
+            errorMessage: {
+                title: this.getText(key, "login-error-title"),
+                message: this.getText(key, "login-error-message")
+            }
+        }
     }
 }
 
