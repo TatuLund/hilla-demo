@@ -17,8 +17,8 @@ export interface Language {
 export class Lang {
 
     private texts: Localization = {
-        "en": {
-            "en": "English",
+        "us": {
+            "us": "English",
             "main-title": "Customer contact manager",
             "main-logout": "Log out",
             "main-language": "Language",
@@ -114,7 +114,7 @@ export class Lang {
     };
 
     private monthNames: Months = {
-        "en": [
+        "us": [
             'January', 'February', 'March', 'April', 'May',
             'June', 'July', 'August', 'September',
             'October', 'November', 'December'
@@ -127,7 +127,7 @@ export class Lang {
     };
 
     private weekdays: Weekdays = {
-        "en": [
+        "us": [
             'Sunday', 'Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday'
         ],
@@ -138,7 +138,7 @@ export class Lang {
     };
 
     private weekdaysShort: Weekdays = {
-        "en": [
+        "us": [
             'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
         ],
         "fi": [
@@ -147,17 +147,17 @@ export class Lang {
     };
 
     private weekStarts: WeekStarts = {
-        "en": 0,
+        "us": 0,
         "fi": 1,
     }
 
     private dateFormats: DateFormats = {
-        "en": "MM-dd-yyyy",
+        "us": "MM-dd-yyyy",
         "fi": "dd.MM.yyyy"
     }
 
     private dateFormatsShort: DateFormats = {
-        "en": "MM-dd-yy",
+        "us": "MM-dd-yy",
         "fi": "dd.MM.yy"
     }
 

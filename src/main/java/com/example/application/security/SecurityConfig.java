@@ -45,6 +45,8 @@ public class SecurityConfig extends VaadinWebSecurity {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web.ignoring().antMatchers("/images/*.png");
+        web.ignoring().antMatchers("/icons/*.png");
+        web.ignoring().antMatchers("/icons/*.svg");
     }
 
     @Bean

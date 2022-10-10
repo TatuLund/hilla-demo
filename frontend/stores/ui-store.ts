@@ -9,7 +9,6 @@ import {
     ConnectionStateStore,
 } from "@vaadin/common-frontend";
 import * as endpoint from 'Frontend/generated/AuthorityEndpoint';
-import { Language } from '../util/localization';
 
 class Message {
     constructor(public text = '', public error = false, public open = false) { }
@@ -21,7 +20,7 @@ export class UiStore {
     offline = false;
     admin = false;
     connectionStateStore?: ConnectionStateStore;
-    lang = "en";
+    lang = "us";
 
     // Listen connection state changes
     connectionStateListener = () => {
