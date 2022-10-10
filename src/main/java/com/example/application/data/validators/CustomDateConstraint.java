@@ -14,7 +14,7 @@ import javax.validation.Payload;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CustomDateConstraint {
-    String message() default "Invalid phone number";
+    String message() default "date null, in future or weekday";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
