@@ -27,6 +27,10 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Localization / views
 - Localization of the DatePicker
 - Localization of the binder error messages using its interpolator callback
+- Example of vaadin-confirm-dialog
+- Using static resources from serves (see the flags in language-switch)
+- Using renderer with vaadin-select (see language-switch)
+- Example of class name generator with vaadin-grid
 
 ## Before running
 
