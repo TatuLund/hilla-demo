@@ -11,7 +11,7 @@ import { listViewStore } from './list-view-store';
 import "@vaadin/notification";
 import { uiStore } from "Frontend/stores/app-store";
 import { ContactForm } from "./contact-form";
-import { Grid, GridDataProviderCallback, GridDataProviderParams } from "@vaadin/grid";
+import { Grid, GridColumn, GridDataProviderCallback, GridDataProviderParams, GridItemModel } from "@vaadin/grid";
 import { columnBodyRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
@@ -67,6 +67,7 @@ export class ListView extends View {
           id="grid"
           theme="no-border no-row-borders row-stripes"
           class="m-m p-s shadow-m grid h-full"
+          .cellClassNameGenerator=${this.cellClassNameGenerator}
           .dataProvider=${this.dataProvider} 
           .selectedItems=${[listViewStore.selectedContact]}
           @active-item-changed=${this.handleGridSelection}
@@ -203,4 +204,12 @@ export class ListView extends View {
     this.handleDataChange();
   }
 
+  cellClassNameGenerator(column: GridColumn, model: GridItemModel<Contact>) {
+    const item = model.item;
+    let classes = '';
+    if (item.status.name === "Closed (lost)") {
+      classes+=' closed-lost';
+    }
+    return classes;
+  }
 }
