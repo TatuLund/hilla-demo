@@ -49,3 +49,6 @@ html {
     --vaadin-charts-color-3: bisque;
   }
 
+  vaadin-confirm-dialog-overlay::part(content) {
+    border: 1px solid var(--lumo-contrast-20pct);
+  }

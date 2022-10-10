@@ -7,6 +7,7 @@ import '@vaadin/combo-box';
 import '@vaadin/button';
 import '@vaadin/icon';
 import '@vaadin/icons';
+import '@vaadin/confirm-dialog'
 import { Binder, field } from '@hilla/form';
 import ContactModel from 'Frontend/generated/com/example/application/data/entity/ContactModel';
 import { crmStore, uiStore } from 'Frontend/stores/app-store';
@@ -20,6 +21,9 @@ export class ContactForm extends View {
 
   // binder is public as we need to access it from ListView
   binder = new Binder(this, ContactModel);
+
+  @state()
+  private confirm = false;
 
   @query("#datepicker")
   private datePicker! : DatePicker;
@@ -111,7 +115,7 @@ export class ContactForm extends View {
         </vaadin-button>
         <vaadin-button
           theme="error"
-          @click=${this.delete}
+          @click=${this.deleteClicked}
           ?disabled=${!this.binder.value.id || uiStore.offline || this.loading || !uiStore.isAdmin() }
         >
           <vaadin-icon icon="vaadin:trash"></vaadin-icon>
@@ -121,11 +125,32 @@ export class ContactForm extends View {
         ${lang.getText(uiStore.lang,"button-cancel")}
         </vaadin-button>
       </div>
+      <vaadin-confirm-dialog
+        header=${lang.getText(uiStore.lang, "contact-confirm-delete")}
+        cancel
+        cancel-text=${lang.getText(uiStore.lang, "button-cancel")}
+        confirm-text=${lang.getText(uiStore.lang, "button-confirm")}
+        @confirm=${this.delete}
+        @cancel=${this.cancelClicked}
+        .opened=${this.confirm}
+      ><span class="whitespace-pre text-l">
+        <span class="text-secondary font-semibold text-s">${lang.getText(uiStore.lang, "contact")}:</span>
+        ${listViewStore.selectedContact?.firstName} ${listViewStore.selectedContact?.lastName}
+      </span></vaadin-confirm-dialog>
     `;
+  }
+
+  cancelClicked() {
+    this.confirm=false;
+  }
+
+  deleteClicked() {
+    this.confirm=true;
   }
 
   async delete() {
     await listViewStore.delete();
+    this.confirm=false;
     this.submitDataChange();
   }
 
