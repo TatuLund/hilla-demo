@@ -1,6 +1,5 @@
-import { customElement, property, state } from "lit/decorators.js";
-import { html, LitElement } from "lit";
-import { ComboBoxChangeEvent } from "@vaadin/combo-box";
+import { customElement, state } from "lit/decorators.js";
+import { html } from "lit";
 import { lang, Language } from "Frontend/util/localization";
 import { uiStore } from "Frontend/stores/app-store";
 import { View } from "Frontend/views/view";

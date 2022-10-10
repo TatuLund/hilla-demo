@@ -12,10 +12,11 @@ import "@vaadin/notification";
 import { uiStore } from "Frontend/stores/app-store";
 import { ContactForm } from "./contact-form";
 import { Grid, GridDataProviderCallback, GridDataProviderParams } from "@vaadin/grid";
-import { columnBodyRenderer, GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js"
+import { columnBodyRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
 import { lang } from "Frontend/util/localization";
+import { contactRenderer } from "./renderers";
 
 @customElement('list-view')
 export class ListView extends View {
@@ -73,7 +74,7 @@ export class ListView extends View {
           <vaadin-grid-column
             header=${lang.getText(uiStore.lang,"contact")}
             .hidden=${!this.narrow}
-            ${columnBodyRenderer(this.contactRenderer, [])}
+            ${columnBodyRenderer(contactRenderer, [])}
           ></vaadin-grid-column>
           <vaadin-grid-column 
             .hidden=${this.narrow}
@@ -192,29 +193,6 @@ export class ListView extends View {
     });
     resizeObserver.observe(this);
   }
-
-  private contactRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => {
-    return html`
-      <vaadin-vertical-layout style="line-height: var(--lumo-line-height-m);">
-        <span class="w-full flex text-primary">
-          ${contact.firstName} ${contact.lastName}
-          <span theme="badge" class="ml-auto text-s">
-            ${contact.status.name}
-          </span>
-        </span>
-        <span
-          class="text-s text-secondary"
-        >
-          ${contact.email}
-        </span>
-        <span
-          class="text-s"
-        >
-          ${contact.company.name}
-        </span>
-      </vaadin-vertical-layout>
-    `;
-  };
 
   // If user enters text to email filter, we reset other filters
   // dataprovider needs to be invalidated to fetch new data
