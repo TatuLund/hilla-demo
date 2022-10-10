@@ -1,6 +1,9 @@
 package com.example.application.data.generator;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -57,6 +60,12 @@ public class DataGenerator {
                 contact.setStatus(statuses.get(r.nextInt(statuses.size())));
                 return contact;
             }).collect(Collectors.toList());
+
+            contacts.forEach(contact -> {
+                var date = contact.getDate();
+                var newDate = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                contact.setDate(newDate);
+            });
 
             contactRepository.saveAll(contacts);
 
