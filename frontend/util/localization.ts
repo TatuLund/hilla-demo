@@ -176,27 +176,37 @@ export class Lang {
         this.languages = langs;
     }
 
-    getLanguageName(lang: string) : string {
-        if (this.texts[lang] && this.texts[lang][lang]) {
-            return this.texts[lang][lang];
-        } else {
-            return "<no "+lang+">";
-        }
-    }
-
-    getLanguage(key : string) : Language {
+    /**
+     * Get the Language object corresponding give language string
+     * 
+     * @param lang The language as a string
+     * @returns A Language object 
+     */
+    getLanguage(lang : string) : Language {
         for (var i=0;i<this.languages.length;i++) {
-            if (this.languages[i].key === key) {
+            if (this.languages[i].key === lang) {
                 return this.languages[i];
             }
         }
         return this.languages[0];
     }
 
+    /**
+     * Get the list of languages found in the localization.
+     * 
+     * @returns Array of Language. 
+     */
     getLanguages() : Language[] {
         return this.languages;
     }
 
+    /**
+     * Get the text of language if it is found. Otherwise returns "no lang:key".
+     * 
+     * @param lang Used language as string
+     * @param key Key for the text
+     * @returns A string value
+     */
     getText(lang : string, key : string | undefined) : string {
         if (key) {
         if (this.texts[lang] && this.texts[lang][key]) {
@@ -209,50 +219,93 @@ export class Lang {
         }
     }
 
-    getMonths(key : string) : string[] {
-        return this.monthNames[key];
+    /**
+     * Return month names for the language.
+     * 
+     * @param lang The language as a string.
+     * @returns Array of string
+     */
+    getMonths(lang : string) : string[] {
+        return this.monthNames[lang];
     }
 
-    getWeekdays(key : string, short : boolean) : string[] {
+    /**
+     * Return weekdays for the language.
+     * 
+     * @param lang The a language as a string.
+     * @param short Return short formats if true, optional parameter
+     * @returns 
+     */
+    getWeekdays(lang : string, short? : boolean) : string[] {
         if (short) {
-            return this.weekdaysShort[key];
+            return this.weekdaysShort[lang];
         } else {
-            return this.weekdays[key];
+            return this.weekdays[lang];
         }
     }
 
-    getFirstDayOfWeek(key : string) : number {
-        return this.weekStarts[key];
+    /**
+     * Get index of the first day of the week by the language
+     * 
+     * @param lang The language as a string
+     * @returns Number value, usually 0 or 1
+     */
+    getFirstDayOfWeek(lang : string) : number {
+        return this.weekStarts[lang];
     }
 
-    getDateFormat(key : string, short : boolean) : string {
+    /**
+     * Get the date format string by the language.
+     * 
+     * @param lang The language as a string. 
+     * @param short Get the short date format if true, optional parameter
+     * @returns A string value
+     */
+    getDateFormat(lang : string, short? : boolean) : string {
         if (short) {
-            return this.dateFormatsShort[key];
+            return this.dateFormatsShort[lang];
         } else {
-            return this.dateFormats[key];
+            return this.dateFormats[lang];
         }
     }
 
+    /**
+     * Update the date picker formatter.
+     * 
+     * @param datePicker DatePicker from vaadin-date-picker
+     */
     setDatePickerFormatter(datePicker : DatePicker) {
         setFormatter(datePicker);
     }
 
-    updateDatePickerI18n(datePicker : DatePicker, key : string) {
-        updateI18n(datePicker, key);
+    /**
+     * Populate existing i18n object of the DatePicker using the given language. 
+     * 
+     * @param datePicker DatePicker from vaadin-date-picker
+     * @param lang The language using as string
+     */
+    updateDatePickerI18n(datePicker : DatePicker, lang : string) {
+        updateI18n(datePicker, lang);
     }
 
-    updateLoginFormI18n(loginForm : LoginForm, key : string) {
+    /**
+     * Replace the i18n object of the LoginForm using the given language. 
+     * 
+     * @param loginForm LoginForm from vaadin-login-form
+     * @param lang The language using as string
+     */
+    updateLoginFormI18n(loginForm : LoginForm, lang : string) {
         loginForm.i18n = {
             form: {
-                title: this.getText(key, "login-title"),
-                username: this.getText(key, "login-username"),
-                password: this.getText(key, "login-password"),
-                submit: this.getText(key, "login-submit"),
-                forgotPassword: this.getText(key, "login-forgotPassword")
+                title: this.getText(lang, "login-title"),
+                username: this.getText(lang, "login-username"),
+                password: this.getText(lang, "login-password"),
+                submit: this.getText(lang, "login-submit"),
+                forgotPassword: this.getText(lang, "login-forgotPassword")
             },
             errorMessage: {
-                title: this.getText(key, "login-error-title"),
-                message: this.getText(key, "login-error-message")
+                title: this.getText(lang, "login-error-title"),
+                message: this.getText(lang, "login-error-message")
             }
         }
     }

@@ -18,9 +18,6 @@ public class CustomDateValidator implements
             ConstraintValidatorContext cxt) {
         // This custom validation performs the same checking we
         // have in the client side validators.ts, so that we are in sync both sides.
-        if (contactField == null) {
-            return false;
-        }
         DayOfWeek dayOfWeek = contactField.getDayOfWeek();
         if (dayOfWeek.getValue() == 6 || dayOfWeek.getValue() == 7) {
             return false;

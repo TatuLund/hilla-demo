@@ -16,7 +16,7 @@ const formatDateIso8601 = (dateParts: DatePickerDate): string => {
 const parseDateIso8601 = (inputValue: string): DatePickerDate => {
     var date : Date;
     if (inputValue.length > 8) {
-        date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang, false), new Date());
+        date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang), new Date());
     } else {
         date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang, true), new Date());
     }
@@ -34,7 +34,7 @@ export function setFormatter(datePicker: DatePicker) {
 
 export function updateI18n(datePicker : DatePicker, key : string) {
     datePicker.i18n.monthNames = lang.getMonths(key);
-    datePicker.i18n.weekdays = lang.getWeekdays(key, false);
+    datePicker.i18n.weekdays = lang.getWeekdays(key);
     datePicker.i18n.weekdaysShort = lang.getWeekdays(key, true);
     datePicker.i18n.calendar = lang.getText(key, "dp-calendar");
     datePicker.i18n.today = lang.getText(key, "dp-today");
