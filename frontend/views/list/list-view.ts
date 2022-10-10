@@ -71,7 +71,8 @@ export class ListView extends View {
           .dataProvider=${this.dataProvider} 
           .selectedItems=${[listViewStore.selectedContact]}
           @active-item-changed=${this.handleGridSelection}
-             >
+        >
+          <!-- This column is rendered, see renderers.ts for the renderer function -->
           <vaadin-grid-column
             header=${lang.getText(uiStore.lang,"contact")}
             .hidden=${!this.narrow}
@@ -204,6 +205,8 @@ export class ListView extends View {
     this.handleDataChange();
   }
 
+  // This function returns class name to be added on the row styles, see
+  // themes/hillacrmtutorial/components/vaadin-grid.css
   cellClassNameGenerator(column: GridColumn, model: GridItemModel<Contact>) {
     const item = model.item;
     let classes = '';

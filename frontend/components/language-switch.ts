@@ -9,6 +9,8 @@ import "@vaadin/select";
 import { selectRenderer } from "@vaadin/select/lit.js";
 import { SelectChangeEvent } from "@vaadin/select";
 
+// This language switch component is used both by login-view
+// and main-layout.
 @customElement("language-switch")
 export class LanguageSwitch extends View {
 
@@ -40,6 +42,7 @@ export class LanguageSwitch extends View {
         ${this.languages.map((language) => html`
             <vaadin-item value="${language.key}">
                 <div class="flex gap-s">
+                    <!-- Flag svg icons are served by the server as static resources -->
                     <img
                         style="width: 30px; height: 20px"
                         src="icons/${language.key}.svg"/>

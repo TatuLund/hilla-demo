@@ -1,3 +1,4 @@
+/* See list-view.ts, class cellClassNameGenerator function */
 .closed-lost {
     background-color: var(--lumo-error-color-10pct);
 }

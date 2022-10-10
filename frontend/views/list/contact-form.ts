@@ -125,6 +125,8 @@ export class ContactForm extends View {
         ${lang.getText(uiStore.lang,"button-cancel")}
         </vaadin-button>
       </div>
+      <!-- confirm dialog is bound to confirm state variable -->
+      <!-- clicking delete will change it to true, which opens the dialog -->
       <vaadin-confirm-dialog
         header=${lang.getText(uiStore.lang, "contact-confirm-delete")}
         cancel
@@ -140,10 +142,13 @@ export class ContactForm extends View {
     `;
   }
 
+  // Update the value to false after closing. Otherwise the dialog cannot
+  // be re-opened.
   cancelClicked() {
     this.confirm=false;
   }
 
+  // Open the dialog by changing the value bound to opened property
   deleteClicked() {
     this.confirm=true;
   }

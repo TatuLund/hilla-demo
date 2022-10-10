@@ -46,6 +46,8 @@ public class SecurityConfig extends VaadinWebSecurity {
         super.configure(web);
         web.ignoring().antMatchers("/images/*.png");
         web.ignoring().antMatchers("/icons/*.png");
+        // Let our flag SVG icons be public so that login-view.ts can show
+        // them before login. Icons are in resources/META-INF/resources folder
         web.ignoring().antMatchers("/icons/*.svg");
     }
 
