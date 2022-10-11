@@ -210,7 +210,7 @@ export class ListView extends View {
   cellClassNameGenerator(column: GridColumn, model: GridItemModel<Contact>) {
     const item = model.item;
     let classes = '';
-    if (item.status.name === "Closed (lost)") {
+    if (item.status.name === "status-closed") {
       classes+=' closed-lost';
     }
     return classes;

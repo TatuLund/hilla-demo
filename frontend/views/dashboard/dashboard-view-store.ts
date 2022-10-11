@@ -1,6 +1,7 @@
-import { crmStore } from 'Frontend/stores/app-store';
+import { crmStore, uiStore } from 'Frontend/stores/app-store';
 import { makeAutoObservable } from 'mobx';
 import type { PointOptionsObject } from 'highcharts';
+import { lang } from 'Frontend/util/localization';
 
 class DashboardViewStore {
     constructor() {
@@ -22,7 +23,7 @@ class DashboardViewStore {
     get statusStats() {
         const stats :  PointOptionsObject[] = [];
         for (const status in crmStore.statusCounts) {
-            stats.push({name : status, y : crmStore.statusCounts[status]})
+            stats.push({name : lang.getText(uiStore.lang, status), y : crmStore.statusCounts[status]})
         }
         return stats;
     }
