@@ -26,6 +26,7 @@ export class LanguageSwitch extends View {
             <vaadin-select
                 ${selectRenderer(this.renderer, this.languages)}
                 @change=${this.languageChange}
+                value=${uiStore.lang}
                 placeholder=${lang.getText(uiStore.lang, "main-language")}
             ></vaadin-select>
             `;

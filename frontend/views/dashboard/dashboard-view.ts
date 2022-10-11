@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { html, HTMLTemplateResult } from "lit";
 import { customElement, query }  from "lit/decorators.js"
 import { View } from "../view";
 import "@vaadin/charts";
@@ -9,6 +9,7 @@ import { uiStore } from "Frontend/stores/app-store";
 import type { Options } from 'highcharts';
 import { Router } from "@vaadin/router";
 import { lang } from "Frontend/util/localization";
+import "@vaadin/progress-bar"
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
@@ -21,7 +22,7 @@ export class DashboardView extends View {
   // Options can be used for many kinds of advanced configuration settings
   // for vaadin-chart. The vaadin-chart has some attributes and 
   // properties for quick configuration.
-  getChartOptions() : Options {
+  private getChartOptions() : Options {
     const options : Options = {
       tooltip: {
         formatter: function() {
@@ -37,9 +38,19 @@ export class DashboardView extends View {
     return options;
   }
 
-  getCompanyStats() {
+  private getLoadingIndicator() : HTMLTemplateResult {
+    return html`
+    <div class="chart-wrapper flex flex-col items-center justify-center">
+      <vaadin-progress-bar
+        style="width: 50%"
+        indeterminate
+      ></vaadin-progress-bar>
+    </div>`;
+  }
+
+  private getCompanyStats() : HTMLTemplateResult {
     if (dashboardViewStore.contactCount === 0) {
-      return html`<p>Loading stats...</p>`;
+      return this.getLoadingIndicator();
     } else {
       return html`
       <div class="chart-wrapper">
@@ -59,9 +70,9 @@ export class DashboardView extends View {
     }
   }
 
-  getStatusStats() {
+  private getStatusStats() : HTMLTemplateResult {
     if (dashboardViewStore.contactCount === 0) {
-      return html`<p>Loading stats...</p>`;
+      return this.getLoadingIndicator();
     } else {
       return html`
       <div class="chart-wrapper" >
@@ -94,7 +105,9 @@ export class DashboardView extends View {
       uiStore.showError(lang.getText(uiStore.lang, "error-offline"));
       return;
     }
-    Router.go("none/"+e.detail.point.point.name);
+    if (e.detail.point) {
+      Router.go("none/"+e.detail.point.point.className);
+    }
   }
 
   // vaadin-notification open state is bound to uiStore.message.open

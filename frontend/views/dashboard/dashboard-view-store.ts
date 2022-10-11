@@ -23,7 +23,7 @@ class DashboardViewStore {
     get statusStats() {
         const stats :  PointOptionsObject[] = [];
         for (const status in crmStore.statusCounts) {
-            stats.push({name : lang.getText(uiStore.lang, status), y : crmStore.statusCounts[status]})
+            stats.push({name : lang.getText(uiStore.lang, status), className : status, y : crmStore.statusCounts[status]})
         }
         return stats;
     }
