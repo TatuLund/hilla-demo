@@ -44,7 +44,7 @@ public class DataGenerator {
             var companies = companyRepository.saveAll(companyGenerator.create(15, seed));
 
             var statuses = statusRepository
-                    .saveAll(Stream.of("Imported lead", "Not contacted", "Contacted", "Customer", "Closed (lost)")
+                    .saveAll(Stream.of("status-imported", "status-notcontacted", "status-contacted", "status-customer", "status-closed")
                             .map(Status::new).collect(Collectors.toList()));
 
             logger.info("... generating 12345 Contact entities...");

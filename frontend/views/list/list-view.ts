@@ -16,7 +16,7 @@ import { columnBodyRenderer } from "@vaadin/grid/lit.js"
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { RouterLocation } from "@vaadin/router";
 import { lang } from "Frontend/util/localization";
-import { contactRenderer } from "./renderers";
+import { contactRenderer, statusRenderer } from "./renderers";
 
 @customElement('list-view')
 export class ListView extends View {
@@ -98,7 +98,7 @@ export class ListView extends View {
           ></vaadin-grid-column>
           <vaadin-grid-column
             .hidden=${this.narrow}
-            path="status.name"
+            ${columnBodyRenderer(statusRenderer, [])}
             header=${lang.getText(uiStore.lang,"status")}
             auto-width
           ></vaadin-grid-column>

@@ -57,6 +57,7 @@ export class Lang {
             "online": "Online",
             "validationError.PastOrPresentWeekdayAndRequired": "date is required, date can't be in future, date must be weekday",
             "validationError.NotEmpty": "input is required",
+            "validationError.NotNull": "input is required",
             "validationError.Email": "input is not valid e-mail address",
             "login-title": "Log in",
             "login-username": "Username",
@@ -64,7 +65,12 @@ export class Lang {
             "login-submit": "Log in",
             "login-forgotPassword": "Forgot password",
             "login-error-title": "Incorrect username or password",
-            "login-error-message": "Check that you have entered the correct username and password and try again."
+            "login-error-message": "Check that you have entered the correct username and password and try again.",
+            "status-imported": "Imported lead",
+            "status-notcontacted": "Not contacted", 
+            "status-contacted": "Contacted",
+            "status-customer": "Customer",
+            "status-closed": "Closed (lost)"
         },
         "fi": {
             "fi": "Suomi",
@@ -106,6 +112,7 @@ export class Lang {
             "online": "Verkossa",
             "validationError.PastOrPresentWeekdayAndRequired": "päivämäärä vaadittu, päivämämäärä ei saa tulevaisuudessa, päivämäärä ei saa olla viikonloppuna",
             "validationError.NotEmpty": "syöte ei saa olla tyhjä",
+            "validationError.NotNull": "syöte ei saa olla tyhjä",
             "validationError.Email": "syöte ei ole kelvollinen sähköpostiosoite",
             "login-title": "Kirjautuminen",
             "login-username": "Käyttäjä",
@@ -113,7 +120,12 @@ export class Lang {
             "login-submit": "Kirjaudu",
             "login-forgotPassword": "Salasana unohtunut",
             "login-error-title": "Väärä käyttäjä tai salasana",
-            "login-error-message": "Tarkista, että olet syöttänyt käyttäjän ja salasanan oikein."
+            "login-error-message": "Tarkista, että olet syöttänyt käyttäjän ja salasanan oikein.",
+            "status-imported": "Ladattu kontakti",
+            "status-notcontacted": "Ei kontaktoitu", 
+            "status-contacted": "Kontaktoitu",
+            "status-customer": "Asiakas",
+            "status-closed": "Suljettu (menetetty)"
         }
     };
 

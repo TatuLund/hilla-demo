@@ -4,6 +4,7 @@ import { View } from '../view';
 import '@vaadin/date-picker';
 import '@vaadin/text-field';
 import '@vaadin/combo-box';
+import '@vaadin/select'
 import '@vaadin/button';
 import '@vaadin/icon';
 import '@vaadin/icons';
@@ -15,6 +16,8 @@ import { listViewStore } from './list-view-store';
 import { DatePicker } from '@vaadin/date-picker';
 import { PastOrPresentWeekdayAndRequired } from 'Frontend/util/validators';
 import { lang } from 'Frontend/util/localization';
+import { statusSelectRenderer } from './renderers';
+import { selectRenderer } from '@vaadin/select/lit';
 
 @customElement('contact-form')
 export class ContactForm extends View {
@@ -85,14 +88,13 @@ export class ContactForm extends View {
         ${field(model.company)}
       >
       </vaadin-combo-box>
-      <vaadin-combo-box
-        label=${lang.getText(uiStore.lang,"status")}
-        .items=${crmStore.statuses}
+      <vaadin-select
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
-        item-label-path="name"
-        ${field(model.status)}
-      ></vaadin-combo-box>
+        label=${lang.getText(uiStore.lang,"status")}
+        ${selectRenderer(statusSelectRenderer, crmStore.statuses)}
+        ${field(model.status.id)}
+      ></vaadin-select>
       <vaadin-date-picker
         id="datepicker"
         label=${lang.getText(uiStore.lang,"date")}
@@ -172,4 +174,8 @@ export class ContactForm extends View {
     const event = new CustomEvent("data-change");
     this.dispatchEvent(event);
   }
+
+
+
+
 }
