@@ -10,6 +10,7 @@ import type { Options } from 'highcharts';
 import { Router } from "@vaadin/router";
 import { lang } from "Frontend/util/localization";
 import "@vaadin/progress-bar"
+import { listViewStore } from "../list/list-view-store";
 
 @customElement("dashboard-view")
 export class DashboardView extends View {
@@ -106,7 +107,11 @@ export class DashboardView extends View {
       return;
     }
     if (e.detail.point) {
-      Router.go("none/"+e.detail.point.point.className);
+      let company = "none"
+      if (listViewStore.company) {
+        company=listViewStore.company;
+      }
+      Router.go(company+"/"+e.detail.point.point.className);
     }
   }
 
