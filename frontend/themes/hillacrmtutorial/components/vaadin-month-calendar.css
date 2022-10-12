@@ -8,7 +8,7 @@
   background: var(--lumo-contrast-5pct);
   color: var(--lumo-secondary-text-color);
   pointer-events: none;
-}
+}   
 
 :host([theme~="weekend"]) [aria-label~="Lauantai"] {
   background: var(--lumo-contrast-5pct);

@@ -3,13 +3,13 @@ package com.example.application.data.endpoint;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.transaction.Transactional;
 
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.example.application.data.entity.Company;
 import com.example.application.data.entity.Contact;
@@ -144,14 +144,5 @@ public class CrmEndpoint {
     @RolesAllowed("ADMIN")
     public void deleteContact(Integer contactId) {
         contactRepository.deleteById(contactId);
-    }
-
-    // Alternative method for checking admin access. The difference to @RolesAllowed is that this results
-    // http error code 500, while @RolesAllowed 401. 401 will kick out the user.
-    private void isAdmin() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!authentication.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ROLE_ADMIN"))) {
-            throw new RuntimeException("ADMIN privileges required to delete a contact");
-        }
     }
 }

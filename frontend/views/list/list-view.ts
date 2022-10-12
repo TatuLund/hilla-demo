@@ -57,6 +57,7 @@ export class ListView extends View {
          <vaadin-icon slot="prefix" icon="vaadin:search"></vaadin-icon>
         </vaadin-text-field>
         <vaadin-button
+          id="addbutton"
           .disabled=${uiStore.offline}
           @click=${listViewStore.editNew}>
           <vaadin-icon slot="suffix" icon="vaadin:plus"></vaadin-icon>

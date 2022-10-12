@@ -63,24 +63,28 @@ export class ContactForm extends View {
     const { model } = this.binder;
     return html`
       <vaadin-text-field
+        id="firstname"
         label=${lang.getText(uiStore.lang,"first-name")}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         ${field(model.firstName)}
       ></vaadin-text-field>
       <vaadin-text-field
+        id="lastname"
         label=${lang.getText(uiStore.lang,"last-name")}
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         ${field(model.lastName)}
       ></vaadin-text-field>
       <vaadin-text-field
+        id="emailfield"
         label=${lang.getText(uiStore.lang,"email")}
         ?readonly=${!uiStore.isAdmin()}
         ?disabled=${uiStore.offline}
         ${field(model.email)}
       ></vaadin-text-field>
       <vaadin-combo-box
+        id="company"
         label=${lang.getText(uiStore.lang,"company")}
         .items=${crmStore.companies}
         ?disabled=${uiStore.offline}
@@ -90,6 +94,7 @@ export class ContactForm extends View {
       >
       </vaadin-combo-box>
       <vaadin-select
+        id="status"
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         label=${lang.getText(uiStore.lang,"status")}
@@ -108,6 +113,7 @@ export class ContactForm extends View {
       >
       </vaadin-date-picker>
       <currency-field
+        id="prospectvalue"
         label=${lang.getText(uiStore.lang,"prospect-value")}
         ?readonly=${!uiStore.isAdmin()}
         ?disabled=${uiStore.offline}
@@ -115,6 +121,7 @@ export class ContactForm extends View {
       ></currency-field>
       <div class="buttons border-contrast-30 border-t mt-auto flex justify-between">
         <vaadin-button
+          id="save"
           theme="primary"
           @click=${this.save}
           ?disabled=${!this.binder.dirty || this.binder.invalid || uiStore.offline || this.loading || !uiStore.isAdmin()}
@@ -123,6 +130,7 @@ export class ContactForm extends View {
           ${this.binder.value.id ? lang.getText(uiStore.lang,"button-save") : lang.getText(uiStore.lang,"button-create")}
         </vaadin-button>
         <vaadin-button
+          id="delete"
           theme="error"
           @click=${this.deleteClicked}
           ?disabled=${!this.binder.value.id || uiStore.offline || this.loading || !uiStore.isAdmin() }
@@ -130,8 +138,11 @@ export class ContactForm extends View {
           <vaadin-icon icon="vaadin:trash"></vaadin-icon>
           ${lang.getText(uiStore.lang,"button-delete")}
         </vaadin-button>
-        <vaadin-button theme="tertiary" @click=${listViewStore.cancelEdit}>
-        ${lang.getText(uiStore.lang,"button-cancel")}
+        <vaadin-button
+          id="cancel"
+          theme="tertiary"
+          @click=${listViewStore.cancelEdit}>
+          ${lang.getText(uiStore.lang,"button-cancel")}
         </vaadin-button>
       </div>
       <!-- confirm dialog is bound to confirm state variable -->
