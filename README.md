@@ -31,6 +31,7 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Using static resources from serves (see the flags in language-switch)
 - Using renderer with vaadin-select (see language-switch)
 - Example of class name generator with vaadin-grid
+- How to integrate 3rd party library, see currency-field.ts
 
 ## Before running
 
