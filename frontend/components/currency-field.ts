@@ -58,7 +58,7 @@ export class CurrencyField extends LitElement {
         this.value = currencyField.parse(e.target.value, this.config);
         const displayValue = currencyField.format(""+this.value, this.config);
         this.textField.value = displayValue;
-        const event = new CustomEvent("value-changed", {
+        const event = new CustomEvent("change", {
             detail: this.value,
             composed: true,
             cancelable: true,
