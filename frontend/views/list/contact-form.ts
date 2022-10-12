@@ -18,6 +18,7 @@ import { PastOrPresentWeekdayAndRequired } from 'Frontend/util/validators';
 import { lang } from 'Frontend/util/localization';
 import { statusSelectRenderer } from './renderers';
 import { selectRenderer } from '@vaadin/select/lit';
+import "Frontend/components/currency-field.ts"
 
 @customElement('contact-form')
 export class ContactForm extends View {
@@ -106,6 +107,12 @@ export class ContactForm extends View {
         ${field(model.date)}
       >
       </vaadin-date-picker>
+      <currency-field
+        label=${lang.getText(uiStore.lang,"prospect-value")}
+        ?readonly=${!uiStore.isAdmin()}
+        ?disabled=${uiStore.offline}
+        ${field(model.prospectValue)}
+      ></currency-field>
       <div class="buttons border-contrast-30 border-t mt-auto flex justify-between">
         <vaadin-button
           theme="primary"

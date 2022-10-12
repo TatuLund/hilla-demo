@@ -53,6 +53,7 @@ public class DataGenerator {
             contactGenerator.setData(Contact::setLastName, DataType.LAST_NAME);
             contactGenerator.setData(Contact::setEmail, DataType.EMAIL);
             contactGenerator.setData(Contact::setDate, DataType.DATE_LAST_1_YEAR);
+            contactGenerator.setData(Contact::setProspectValue, DataType.PRICE);
 
             Random r = new Random(seed);
             var contacts = contactGenerator.create(12345, seed).stream().map(contact -> {

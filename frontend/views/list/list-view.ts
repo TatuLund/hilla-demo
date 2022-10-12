@@ -17,6 +17,7 @@ import Contact from "Frontend/generated/com/example/application/data/entity/Cont
 import { RouterLocation } from "@vaadin/router";
 import { lang } from "Frontend/util/localization";
 import { contactRenderer, statusRenderer } from "./renderers";
+import "Frontend/components/currency-field.ts";
 
 @customElement('list-view')
 export class ListView extends View {

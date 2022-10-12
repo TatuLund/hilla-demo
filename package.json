@@ -129,6 +129,7 @@
     "@vaadin/virtual-list": "23.2.3",
     "construct-style-sheets-polyfill": "3.1.0",
     "date-fns": "2.28.0",
+    "input-currency-field": "2.0.1",
     "lit": "2.3.0",
     "mobx": "^6.3.5"
   },
@@ -420,6 +421,6 @@
       "workbox-core": "6.5.0",
       "workbox-precaching": "6.5.0"
     },
-    "hash": "17d4865832aa60044ac60490a898aa29da810d40f986bfce6c849ab21d01605d"
+    "hash": "79a9c18d1379d8e78d189c85dccd6a4db3a76ac1e366639157ff97da8bde0841"
   }
 }

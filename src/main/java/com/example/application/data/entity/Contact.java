@@ -7,6 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import dev.hilla.Nonnull;
 import com.example.application.data.AbstractEntity;
@@ -42,6 +43,9 @@ public class Contact extends AbstractEntity {
     @Nonnull
     @NotNull
     private LocalDate date;
+
+    @PositiveOrZero
+    private Double prospectValue;
 
     @Override
     public String toString() {
@@ -95,4 +99,13 @@ public class Contact extends AbstractEntity {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public Double getProspectValue() {
+        return prospectValue;
+    }
+
+    public void setProspectValue(Double prospectValue) {
+        this.prospectValue = prospectValue;
+    }
+
 }
