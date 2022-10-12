@@ -110,8 +110,10 @@ public class ListViewIT extends AbstractViewTest {
 
         var prospectValue = $(TestBenchElement.class).id("prospectvalue");
         prospectValue.focus();
-        prospectValue.$(TextFieldElement.class).first().sendKeys("1.233,21");
+        var textField = prospectValue.$(TextFieldElement.class).first();
+        textField.sendKeys("1233,21");
         blur();
+        assertEquals("1.233,21 €",textField.getValue());
 
         // Click to save
         var saveButton = $(ButtonElement.class).id("save");
