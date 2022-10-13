@@ -65,7 +65,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
-        logger.info("Page "+page+" fetched with "+response.size+" items");
+        logger.info("Page "+page+" fetched with "+pageSize+"/"+response.size+" items");
         return response;
     }
 
@@ -77,7 +77,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
-        logger.info("Page "+page+" by '"+companyName+"' and '"+statusName+"' fetched with "+response.size+" items");
+        logger.info("Page "+page+" by '"+companyName+"' and '"+statusName+"' fetched with "+pageSize+"/"+response.size+" items");
         return response;
     }
 
@@ -88,7 +88,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
-        logger.info("Page "+page+" by '"+companyName+"' fetched with "+response.size+" items");
+        logger.info("Page "+page+" by '"+companyName+"' fetched with "+pageSize+"/"+response.size+" items");
         return response;
     }
  
@@ -99,7 +99,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
-        logger.info("Page "+page+" by '"+statusName+"' fetched with "+response.size+" items");
+        logger.info("Page "+page+" by '"+statusName+"' fetched with "+pageSize+"/"+response.size+" items");
         return response;
     }
     
