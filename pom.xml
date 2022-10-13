@@ -157,7 +157,7 @@
             <version>5.1.1</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+    </dependencies>  
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>

@@ -14,7 +14,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.vaadin.flow.component.login.testbench.LoginFormElement;
-import com.vaadin.testbench.Parameters;
 import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBench;
 import com.vaadin.testbench.TestBenchTestCase;
@@ -63,12 +62,7 @@ public abstract class AbstractViewTest extends TestBenchTestCase {
         setDriver(TestBench.createDriver(new ChromeDriver(options)));
         getDriver().get(getURL(route));
 
-        // We do screenshot testing, adjust settings to ensure less flakiness
-        // Parameters.setScreenshotComparisonTolerance(0.05);
-        // Parameters.setScreenshotComparisonCursorDetection(true);
         testBench().resizeViewPortTo(1600, 900);
-        // Parameters.setMaxScreenshotRetries(3);
-        // Parameters.setScreenshotRetryDelay(1000);
 
         // Wait for frontend compilation complete before testing
         waitForDevServer();
@@ -80,7 +74,7 @@ public abstract class AbstractViewTest extends TestBenchTestCase {
     }
 
     public void login(String user, String pass) {
-        LoginFormElement loginForm = $(LoginFormElement.class).first();
+        var loginForm = $(LoginFormElement.class).first();
         loginForm.getUsernameField().setValue(user);
         loginForm.getPasswordField().setValue(pass);
         blur();
