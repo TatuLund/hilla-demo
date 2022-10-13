@@ -6,6 +6,7 @@ import { lang } from "Frontend/util/localization";
 import { html } from "lit";
 import "@vaadin/select/src/vaadin-select-list-box";
 import "@vaadin/select/src/vaadin-select-item";
+import { ifDefined } from "lit-html/directives/if-defined.js";
 
 export const statusRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => {
   return html`<span theme="badge" class="ml-auto text-s">
@@ -39,7 +40,7 @@ export const contactRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => 
   export const statusSelectRenderer = () => html`
     <vaadin-select-list-box>
       ${crmStore.statuses.map((status) => html`
-        <vaadin-select-item value="${status.id}">
+        <vaadin-select-item value="${ifDefined(status.id)}">
           <span theme="badge" class="ml-auto text-s">
             ${lang.getText(uiStore.lang, status.name)}
           </span>
