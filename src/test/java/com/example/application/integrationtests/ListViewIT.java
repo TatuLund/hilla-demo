@@ -3,9 +3,7 @@ package com.example.application.integrationtests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -47,9 +45,20 @@ public class ListViewIT extends AbstractViewTest {
         // First add a new entry
         doAddContact();
 
-        // Search the new entry, click on item in grid to open it in contact form
+        // Search the new entry
         $(TextFieldElement.class).id("email").setValue("tatu.lund@acme.org");
+        // Wait for server to respond
+        wait(100);
         var grid = $(GridElement.class).first();
+        assertEquals(1,grid.getRowCount());
+
+        // Verify grid shows correct entry
+        assertEquals("Tatu",grid.getCell(0,0).getText());
+        assertEquals("Lund",grid.getCell(0,1).getText());
+        assertEquals("tatu.lund@acme.org",grid.getCell(0,2).getText());
+        assertEquals("Avaya Inc.",grid.getCell(0,4).getText());
+
+        // click on item in grid to open it in contact form
         grid.select(0);
 
         // Verify that form input is still correct
@@ -70,6 +79,8 @@ public class ListViewIT extends AbstractViewTest {
         waitForElementPresent(By.tagName("vaadin-notification"));
         var notification = $(NotificationElement.class).first();
         assertEquals("Contact deleted.", notification.getText());
+
+        assertEquals(0,grid.getRowCount());
     }
 
     private void verifyForm() {

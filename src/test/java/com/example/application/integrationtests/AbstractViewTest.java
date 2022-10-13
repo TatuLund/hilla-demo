@@ -66,7 +66,7 @@ public abstract class AbstractViewTest extends TestBenchTestCase {
         // We do screenshot testing, adjust settings to ensure less flakiness
         // Parameters.setScreenshotComparisonTolerance(0.05);
         // Parameters.setScreenshotComparisonCursorDetection(true);
-        // testBench().resizeViewPortTo(1920, 1024);
+        testBench().resizeViewPortTo(1600, 900);
         // Parameters.setMaxScreenshotRetries(3);
         // Parameters.setScreenshotRetryDelay(1000);
 
