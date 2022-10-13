@@ -3,7 +3,9 @@ package com.example.application.integrationtests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -23,6 +25,7 @@ public class ListViewIT extends AbstractViewTest {
 
     LocalDate sunday = LocalDate.of(2022,10,9);
     LocalDate thursday = LocalDate.of(2022,10,13);
+    LocalDate future;
 
     @Override
     public void setup() throws Exception {
@@ -33,6 +36,9 @@ public class ListViewIT extends AbstractViewTest {
         } catch (NotFoundException e) {
             
         }
+
+        var date = LocalDate.now();
+        future = date.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
 
         login("admin","admin");
     }
@@ -123,6 +129,14 @@ public class ListViewIT extends AbstractViewTest {
         dateField.focus();
         assertNotEquals("true",comboBox.getAttribute("invalid"));
         dateField.setDate(sunday);
+        blur();
+        assertEquals("date is required, date can't be in future, date must be weekday",dateField.getProperty("errorMessage"));
+        dateField.focus();
+        dateField.setDate(thursday);
+        blur();
+        dateField.focus();
+        assertNotEquals("true",dateField.getAttribute("invalid"));
+        dateField.setDate(future);
         blur();
         assertEquals("date is required, date can't be in future, date must be weekday",dateField.getProperty("errorMessage"));
         dateField.focus();
