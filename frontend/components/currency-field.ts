@@ -55,6 +55,8 @@ export class CurrencyField extends LitElement {
         if (this.value) {
             const displayValue = currencyField.format(""+this.value, this.config);
             this.textField.value = displayValue;
+        } else {
+            this.textField.value = "";
         }
     }
 
