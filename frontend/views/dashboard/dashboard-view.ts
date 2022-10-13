@@ -32,7 +32,14 @@ export class DashboardView extends View {
       },
       yAxis: {
         title: {
-          text: lang.getText(uiStore.lang, "dashboard-yaxis")
+          text: lang.getText(uiStore.lang, "dashboard-yaxis"),
+        }
+      },
+      plotOptions: {
+        series: {
+          animation: {
+            duration: 100
+          }
         }
       }
     }
