@@ -116,7 +116,7 @@ export class CrmStore {
             await endpoint.deleteContact(contact.id);
             uiStore.showSuccess(lang.getText(uiStore.lang, "success-delete"));
             this.count--;
-            this.updateStats(await endpoint.saveContact(contact),-1);
+            this.updateStats(contact,-1);
         } catch (e) {
             console.log(e);
             uiStore.showError(lang.getText(uiStore.lang, "error-delete"));

@@ -10,7 +10,6 @@ import java.time.temporal.TemporalAdjusters;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
-import org.springframework.format.datetime.standard.DateTimeFormatterFactory;
 
 import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.combobox.testbench.ComboBoxElement;

@@ -3,13 +3,14 @@ package com.example.application.data.endpoint;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.application.data.entity.Company;
 import com.example.application.data.entity.Contact;
@@ -27,6 +28,8 @@ public class CrmEndpoint {
     private ContactRepository contactRepository;
     private CompanyRepository companyRepository;
     private StatusRepository statusRepository;
+
+    Logger logger = LoggerFactory.getLogger(CrmEndpoint.class);
 
     class PageResponse {
         @Nonnull
@@ -62,7 +65,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
-
+        logger.info("Page "+page+" fetched with "+response.size+" items");
         return response;
     }
 
@@ -74,6 +77,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
+        logger.info("Page "+page+" by '"+companyName+"' and '"+statusName+"' fetched with "+response.size+" items");
         return response;
     }
 
@@ -84,6 +88,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
+        logger.info("Page "+page+" by '"+companyName+"' fetched with "+response.size+" items");
         return response;
     }
  
@@ -94,6 +99,7 @@ public class CrmEndpoint {
         var response = new PageResponse();
         response.content = dbPage.getContent();
         response.size = dbPage.getTotalElements();
+        logger.info("Page "+page+" by '"+statusName+"' fetched with "+response.size+" items");
         return response;
     }
     
@@ -112,6 +118,7 @@ public class CrmEndpoint {
         statuses.forEach(status -> {
             companyStats.statusCounts.put(status.getName(), contactRepository.countByStatus(status));
         });
+        logger.info("Fetched company and status statistics");
         return companyStats;
     }
 
@@ -120,6 +127,7 @@ public class CrmEndpoint {
         var crmData = new CrmData();
         crmData.companies = companyRepository.findAll();
         crmData.statuses = statusRepository.findAll();
+        logger.info("Fetched companies and statuses");
         return crmData;
     }
 
@@ -130,6 +138,7 @@ public class CrmEndpoint {
     public Contact saveContact(Contact contact) {
         // Only use the id of the company, we don't want to update anything else on
         // Company.
+        logger.info("Saving new contact: "+contact.getId());
         contact.setCompany(companyRepository.findById(contact.getCompany().getId())
         .orElseThrow(() -> new RuntimeException(
             "Could not find Company with ID " + contact.getCompany().getId())));
@@ -142,7 +151,9 @@ public class CrmEndpoint {
     // Secure endpoint method for ADMIN users only as user can re-enable buttons
     // using browser devtools, etc.
     @RolesAllowed("ADMIN")
+    @Transactional
     public void deleteContact(Integer contactId) {
+        logger.info("Deleting contact: "+contactId);
         contactRepository.deleteById(contactId);
     }
 }

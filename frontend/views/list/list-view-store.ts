@@ -37,12 +37,14 @@ class ListViewStore {
     }
 
     async save(contact: Contact) {
+        console.log("Saving contact: "+contact.id);
         await crmStore.saveContact(contact, !this.contacts.includes(contact));
         this.cancelEdit();
     }
 
     async delete() {
         if (this.selectedContact) {
+            console.log("Deleting contact: "+this.selectedContact.id);
             await crmStore.deleteContact(this.selectedContact);
             this.cancelEdit();
         }

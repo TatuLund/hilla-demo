@@ -1,7 +1,7 @@
 import { TextField, TextFieldChangeEvent } from "@vaadin/text-field";
 import "@vaadin/text-field";
 import { css, html, LitElement } from "lit";
-import { ifDefined } from "lit-html/directives/if-defined";
+import { ifDefined } from "lit-html/directives/if-defined.js";
 import { customElement, property, query } from "lit/decorators.js";
 import currencyField from "input-currency-field";
 

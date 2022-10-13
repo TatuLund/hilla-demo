@@ -6,6 +6,8 @@ import com.vaadin.flow.server.PWA;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
 import com.vaadin.flow.theme.Theme;
 
 /**
@@ -15,6 +17,7 @@ import com.vaadin.flow.theme.Theme;
  *
  */
 @SpringBootApplication
+@EnableTransactionManagement
 @Theme(value = "hillacrmtutorial")
 @PWA(name = "Hilla CRM Tutorial", shortName = "CRM", offlineResources = { "images/logo.png" })
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
