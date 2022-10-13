@@ -47,6 +47,10 @@ export class CurrencyField extends LitElement {
         thousandsSeparator: '.',
     }
 
+    focus() {
+        this.textField.focus();
+    }
+
     updated() {
         if (this.value) {
             const displayValue = currencyField.format(""+this.value, this.config);

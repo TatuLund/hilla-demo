@@ -3,8 +3,8 @@ import { html } from "lit";
 import { lang, Language } from "Frontend/util/localization";
 import { uiStore } from "Frontend/stores/app-store";
 import { View } from "Frontend/views/view";
-import "@vaadin/list-box";
-import "@vaadin/item";
+import "@vaadin/select/src/vaadin-select-list-box.js";
+import "@vaadin/select/src/vaadin-select-item.js";
 import "@vaadin/select";
 import { selectRenderer } from "@vaadin/select/lit.js";
 import { SelectChangeEvent } from "@vaadin/select";
@@ -39,9 +39,9 @@ export class LanguageSwitch extends View {
     }
 
     private renderer = () => html`
-        <vaadin-list-box>
+        <vaadin-select-list-box>
         ${this.languages.map((language) => html`
-            <vaadin-item value="${language.key}">
+            <vaadin-select-item value="${language.key}">
                 <div class="flex gap-s">
                     <!-- Flag svg icons are served by the server as static resources -->
                     <img
@@ -51,9 +51,9 @@ export class LanguageSwitch extends View {
                         ${language.name}
                     </div>
                 </div>
-            </vaadin-item>
+            </vaadin-select-item>
             `
         )}
-    </vaadin-list-box>
+    </vaadin-select-list-box>
   `;
 }
