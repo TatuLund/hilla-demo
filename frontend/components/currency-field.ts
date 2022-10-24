@@ -81,9 +81,9 @@ export class CurrencyField extends LitElement {
                 .label=${this.label}
                 .errorMessage=${this.errorMessage}
                 .helperText=${this.helperText}
-                ?disabled=${this.disabled}
-                ?readonly=${this.disabled}
-                ?invalid=${this.disabled}
+                disabled=${ifDefined(this.disabled)}
+                readonly=${ifDefined(this.readonly)}
+                invalid=${ifDefined(this.invalid)}
                 @change=${this.handleChange}
             ></vaadin-text-field>`;
     }
