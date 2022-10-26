@@ -1,5 +1,5 @@
-import { html, HTMLTemplateResult, nothing } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { html, HTMLTemplateResult, nothing, PropertyValueMap } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { Layout } from './views/view';
 import '@vaadin/app-layout';
 import '@vaadin/app-layout/vaadin-drawer-toggle';
@@ -10,6 +10,8 @@ import '@vaadin/select'
 import { ViewRoute, views } from './routes';
 import { lang } from './util/localization';
 import 'Frontend/components/language-switch'
+import { router } from '.';
+import { ifDefined } from "lit-html/directives/if-defined.js";
 
 @customElement('main-layout')
 export class MainLayout extends Layout {
@@ -17,6 +19,10 @@ export class MainLayout extends Layout {
   connectedCallback() {
     super.connectedCallback();
     this.classList.add('flex', 'h-full', 'w-full');
+  }
+
+  firstUpdated() {
+    window.addEventListener("vaadin-router-location-changed", (e) => this.refresh());
   }
 
   // Generate menu in drawer from the routes
@@ -56,12 +62,16 @@ export class MainLayout extends Layout {
       var path : string;
       // Strip possible route paramters
       if (index > 0) {
-         path = view.path.substring(0,view.path.indexOf(":"));
+        path = view.path.substring(0,view.path.indexOf(":"));
       } else {
         path = view.path;
       }
-      return html` <a href=${path}><vaadin-icon class="m-s" icon="${view.icon}"></vaadin-icon> ${lang.getText(uiStore.lang, view.title)} </a> `;
+      return html`<a class=${router.location.route?.path.includes(path) ? "rounded-s shadow-xs" : ""} href=${path}><vaadin-icon class="m-s" icon="${ifDefined(view.icon)}"></vaadin-icon> ${lang.getText(uiStore.lang, view.title)} </a> `;
     }
+  }
+
+  refresh() {
+    this.requestUpdate();
   }
 
   indicatorIcon() : HTMLTemplateResult {

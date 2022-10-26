@@ -2,53 +2,53 @@
 @import url('./views/dashboard-view.css');
 
 [hidden] {
-    display: none !important;
-   }
+  display: none !important;
+}
    
 .h-full {
-    height: calc(100% - var(--lumo-space-l)) !important;
+  height: calc(100% - var(--lumo-space-l)) !important;
 }
 
 html {
-    --lumo-border-radius: 0.5em;
-    --lumo-primary-text-color: rgb(71, 122, 189);
-    --lumo-primary-color-50pct: rgba(71, 122, 189, 0.5);
-    --lumo-primary-color-10pct: rgba(71, 122, 189, 0.1);
-    --lumo-primary-color: hsl(214, 47%, 51%);
-    --lumo-error-text-color: rgb(195, 81, 75);
-    --lumo-error-color-50pct: rgba(195, 81, 75, 0.5);
-    --lumo-error-color-10pct: rgba(195, 81, 75, 0.1);
-    --lumo-error-color: hsl(3, 50%, 53%);
-    --lumo-success-text-color: rgb(90, 191, 132);
-    --lumo-success-color-50pct: rgba(90, 191, 132, 0.5);
-    --lumo-success-color-10pct: rgba(90, 191, 132, 0.1);
-    --lumo-success-color: hsl(145, 44%, 55%);
-    --lumo-shade-5pct: rgba(47, 68, 96, 0.05);
-    --lumo-shade-10pct: rgba(47, 68, 96, 0.1);
-    --lumo-shade-20pct: rgba(47, 68, 96, 0.2);
-    --lumo-shade-30pct: rgba(47, 68, 96, 0.3);
-    --lumo-shade-40pct: rgba(47, 68, 96, 0.4);
-    --lumo-shade-50pct: rgba(47, 68, 96, 0.5);
-    --lumo-shade-60pct: rgba(47, 68, 96, 0.6);
-    --lumo-shade-70pct: rgba(47, 68, 96, 0.7);
-    --lumo-shade-80pct: rgba(47, 68, 96, 0.8);
-    --lumo-shade-90pct: rgba(47, 68, 96, 0.9);
-    --lumo-shade: hsl(214, 34%, 28%);
-    --lumo-disabled-text-color: rgba(59, 85, 120, 0.3);
-    --lumo-tertiary-text-color: rgba(61, 88, 123, 0.5);
-    --lumo-secondary-text-color: rgba(59, 85, 120, 0.7);
-    --lumo-body-text-color: rgba(55, 83, 118, 0.9);
-    --lumo-header-text-color: hsl(214, 42%, 28%);
-  }
+  --lumo-border-radius: 0.5em;
+  --lumo-primary-text-color: rgb(71, 122, 189);
+  --lumo-primary-color-50pct: rgba(71, 122, 189, 0.5);
+  --lumo-primary-color-10pct: rgba(71, 122, 189, 0.1);
+  --lumo-primary-color: hsl(214, 47%, 51%);
+  --lumo-error-text-color: rgb(195, 81, 75);
+  --lumo-error-color-50pct: rgba(195, 81, 75, 0.5);
+  --lumo-error-color-10pct: rgba(195, 81, 75, 0.1);
+  --lumo-error-color: hsl(3, 50%, 53%);
+  --lumo-success-text-color: rgb(90, 191, 132);
+  --lumo-success-color-50pct: rgba(90, 191, 132, 0.5);
+  --lumo-success-color-10pct: rgba(90, 191, 132, 0.1);
+  --lumo-success-color: hsl(145, 44%, 55%);
+  --lumo-shade-5pct: rgba(47, 68, 96, 0.05);
+  --lumo-shade-10pct: rgba(47, 68, 96, 0.1);
+  --lumo-shade-20pct: rgba(47, 68, 96, 0.2);
+  --lumo-shade-30pct: rgba(47, 68, 96, 0.3);
+  --lumo-shade-40pct: rgba(47, 68, 96, 0.4);
+  --lumo-shade-50pct: rgba(47, 68, 96, 0.5);
+  --lumo-shade-60pct: rgba(47, 68, 96, 0.6);
+  --lumo-shade-70pct: rgba(47, 68, 96, 0.7);
+  --lumo-shade-80pct: rgba(47, 68, 96, 0.8);
+  --lumo-shade-90pct: rgba(47, 68, 96, 0.9);
+  --lumo-shade: hsl(214, 34%, 28%);
+  --lumo-disabled-text-color: rgba(59, 85, 120, 0.3);
+  --lumo-tertiary-text-color: rgba(61, 88, 123, 0.5);
+  --lumo-secondary-text-color: rgba(59, 85, 120, 0.7);
+  --lumo-body-text-color: rgba(55, 83, 118, 0.9);
+  --lumo-header-text-color: hsl(214, 42%, 28%);
+}
+ 
+vaadin-chart {
+  --vaadin-charts-color-0: darkolivegreen;
+  --vaadin-charts-color-1: brown;
+  --vaadin-charts-color-2: orange;
+  --vaadin-charts-color-4: burlywood;
+  --vaadin-charts-color-3: bisque;
+}
 
-  vaadin-chart {
-    --vaadin-charts-color-0: darkolivegreen;
-    --vaadin-charts-color-1: brown;
-    --vaadin-charts-color-2: orange;
-    --vaadin-charts-color-4: burlywood;
-    --vaadin-charts-color-3: bisque;
-  }
-
-  vaadin-confirm-dialog-overlay::part(content) {
-    border: 1px solid var(--lumo-contrast-20pct);
-  }
+vaadin-confirm-dialog-overlay::part(content) {
+  border: 1px solid var(--lumo-contrast-20pct);
+}
