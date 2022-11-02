@@ -8,6 +8,7 @@ import "@vaadin/select/src/vaadin-select-item.js";
 import "@vaadin/select";
 import { selectRenderer } from "@vaadin/select/lit.js";
 import { SelectChangeEvent } from "@vaadin/select";
+import { SelectLitRenderer } from "@vaadin/select/lit.js";
 
 // This language switch component is used both by login-view
 // and main-layout.
@@ -32,13 +33,13 @@ export class LanguageSwitch extends View {
             `;
     }
 
-    languageChange(e : SelectChangeEvent) {
+    languageChange(e : SelectChangeEvent) : void {
         if (e.target.value) {
           uiStore.lang=e.target.value;
         }
     }
 
-    private renderer = () => html`
+    private renderer : SelectLitRenderer = () => html`
         <vaadin-select-list-box>
         ${this.languages.map((language) => html`
             <vaadin-select-item value="${language.key}">

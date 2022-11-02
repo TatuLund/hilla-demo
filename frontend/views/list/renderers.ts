@@ -1,5 +1,6 @@
-import { GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js"
-import "@vaadin/vertical-layout"
+import { GridColumnBodyLitRenderer } from "@vaadin/grid/lit.js";
+import { SelectLitRenderer } from "@vaadin/select/lit.js";
+import "@vaadin/vertical-layout";
 import Contact from "Frontend/generated/com/example/application/data/entity/Contact";
 import { crmStore, uiStore } from "Frontend/stores/app-store";
 import { lang } from "Frontend/util/localization";
@@ -37,7 +38,7 @@ export const contactRenderer: GridColumnBodyLitRenderer<Contact> = (contact) => 
     `;
   };
 
-  export const statusSelectRenderer = () => html`
+  export const statusSelectRenderer: SelectLitRenderer = () => html`
     <vaadin-select-list-box>
       ${crmStore.statuses.map((status) => html`
         <vaadin-select-item value="${ifDefined(status.id)}">

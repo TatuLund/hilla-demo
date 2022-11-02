@@ -98,7 +98,7 @@ export class ContactForm extends View {
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         label=${lang.getText(uiStore.lang,"status")}
-        ${selectRenderer(statusSelectRenderer, crmStore.statuses)}
+        ${selectRenderer(statusSelectRenderer, [crmStore.statuses, uiStore.lang])}
         ${field(model.status.id)}
       ></vaadin-select>
       <vaadin-date-picker

@@ -26,7 +26,7 @@ export class ListView extends View {
   @query("#grid")
   grid! : Grid<Contact>;
 
-  narrow = false;
+  private narrow = false;
 
   // Process the url parameters
   onBeforeEnter(location: RouterLocation) { 
