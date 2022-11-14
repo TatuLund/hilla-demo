@@ -12,6 +12,14 @@ export class CurrencyField extends LitElement {
     private textField! : TextField;
 
     @property()
+    config = {
+        decimalSymbol: ',',
+        allowedDecimalSymbols: ',.',
+        postfix: ' €',
+        thousandsSeparator: '.',
+    }
+
+    @property()
     value : number | null = null;
     @property()
     errorMessage : string | null = null;
@@ -27,6 +35,8 @@ export class CurrencyField extends LitElement {
     readonly : boolean | undefined = undefined;
     @property({reflect: true})
     invalid : boolean | undefined = undefined;
+    @property({reflect: true})
+    required : boolean | undefined = undefined;
 
     static get styles() {
         return css`
@@ -38,13 +48,6 @@ export class CurrencyField extends LitElement {
                 min-width: 100%;
             }
         `;
-    }
-
-    private config = {
-        decimalSymbol: ',',
-        allowedDecimalSymbols: ',.',
-        postfix: ' €',
-        thousandsSeparator: '.',
     }
 
     focus() {
@@ -84,6 +87,7 @@ export class CurrencyField extends LitElement {
                 disabled=${ifDefined(this.disabled)}
                 readonly=${ifDefined(this.readonly)}
                 invalid=${ifDefined(this.invalid)}
+                required=${ifDefined(this.required)}
                 @change=${this.handleChange}
             ></vaadin-text-field>`;
     }

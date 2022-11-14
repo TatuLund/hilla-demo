@@ -52,3 +52,34 @@ vaadin-chart {
 vaadin-confirm-dialog-overlay::part(content) {
   border: 1px solid var(--lumo-contrast-20pct);
 }
+
+[theme~="dense"] {
+  --lumo-border-radius-s: 0.1em;
+  --lumo-border-radius-m: 0.2em;
+  --lumo-border-radius: 0.2em;
+  --lumo-border-radius-l: 0.3em;
+  --lumo-space-xs: 0.25rem;
+  --lumo-space-s: 0.5rem;
+  --lumo-space-m: 1.5rem;
+  --lumo-space-l: 1.75rem;
+  --lumo-space-xl: 2rem;
+  --lumo-size-xs: 1rem;
+  --lumo-size-s: 1.2rem;
+  --lumo-size-m: 1.75rem;
+  --lumo-size-l: 2rem;
+  --lumo-size-xl: 2.5rem;
+  --lumo-icon-size-s: 0.5rem;
+  --lumo-icon-size-m: 1rem;
+  --lumo-icon-size-l: 1.5rem;
+  --lumo-font-size-xxs: 0.4rem;
+  --lumo-font-size-xs: 0.5rem;
+  --lumo-font-size-s: 0.6rem;
+  --lumo-font-size-m: 0.9rem;
+  --lumo-font-size-l: 1.2rem;
+  --lumo-font-size-xl: 1.4rem;
+  --lumo-font-size-xxl: 1.8rem;
+  --lumo-font-size-xxxl: 2rem;
+  --lumo-line-height-xs: 0.75;
+  --lumo-line-height-s: 1.25;
+  --lumo-line-height-m: 1;
+}

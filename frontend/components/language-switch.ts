@@ -46,7 +46,7 @@ export class LanguageSwitch extends View {
                 <div class="flex gap-s">
                     <!-- Flag svg icons are served by the server as static resources -->
                     <img
-                        style="width: 30px; height: 20px"
+                        style="height: calc(var(--lumo-size-m) / 2)"
                         src="icons/${language.key}.svg"/>
                     <div>
                         ${language.name}
