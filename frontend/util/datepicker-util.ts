@@ -39,7 +39,6 @@ export function updateI18n(datePicker : DatePicker, key : string) {
     datePicker.i18n.calendar = lang.getText(key, "dp-calendar");
     datePicker.i18n.today = lang.getText(key, "dp-today");
     datePicker.i18n.cancel = lang.getText(key, "dp-cancel");
-    datePicker.i18n.clear = lang.getText(key, "dp-clear");
     datePicker.i18n.week = lang.getText(key, "dp-week");
     datePicker.i18n.firstDayOfWeek=lang.getFirstDayOfWeek(key);
 }

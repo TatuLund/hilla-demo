@@ -22,6 +22,7 @@ export class Lang {
             "main-title": "Customer contact manager",
             "main-logout": "Log out",
             "main-language": "Language",
+            "main-zoom-toggle": "Switch size",
             "menu-dashboard": "Dashboard",
             "menu-contacts": "Contact list",
             "button-add": "Add contact",
@@ -60,6 +61,7 @@ export class Lang {
             "validationError.NotEmpty": "input is required",
             "validationError.NotNull": "input is required",
             "validationError.Email": "input is not valid e-mail address",
+            "validationError.PositiveOrZero": "value can't be negative",
             "login-title": "Log in",
             "login-username": "Username",
             "login-password": "Password",
@@ -71,13 +73,15 @@ export class Lang {
             "status-notcontacted": "Not contacted", 
             "status-contacted": "Contacted",
             "status-customer": "Customer",
-            "status-closed": "Closed (lost)"
+            "status-closed": "Closed (lost)",
+            "currency-field-tooltip": "This is a currency field with automatic formatting"
         },
         "fi": {
             "fi": "Suomi",
             "main-title": "Asiakasyhteystietojen hallinta",
             "main-logout": "Poistu",
             "main-language": "Kieli",
+            "main-zoom-toggle": "Vaihda kokoa",
             "menu-dashboard": "Tilastot",
             "menu-contacts": "Yhteystiedot",
             "button-add": "Lisää kontakti",
@@ -116,6 +120,7 @@ export class Lang {
             "validationError.NotEmpty": "syöte ei saa olla tyhjä",
             "validationError.NotNull": "syöte ei saa olla tyhjä",
             "validationError.Email": "syöte ei ole kelvollinen sähköpostiosoite",
+            "validationError.PositiveOrZero": "arvo ei saa olla negatiivinen",
             "login-title": "Kirjautuminen",
             "login-username": "Käyttäjä",
             "login-password": "Salasana",
@@ -127,7 +132,8 @@ export class Lang {
             "status-notcontacted": "Ei kontaktoitu", 
             "status-contacted": "Kontaktoitu",
             "status-customer": "Asiakas",
-            "status-closed": "Suljettu (menetetty)"
+            "status-closed": "Suljettu (menetetty)",
+            "currency-field-tooltip": "Tämä on automaattisesti formatoiva valuuttakenttä"
         }
     };
 

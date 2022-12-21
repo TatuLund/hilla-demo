@@ -4,7 +4,8 @@
 [hidden] {
   display: none !important;
 }
-   
+
+/* overriding h-full styles to fix sizing issue */
 .h-full {
   height: calc(100% - var(--lumo-space-l)) !important;
 }
@@ -53,6 +54,7 @@ vaadin-confirm-dialog-overlay::part(content) {
   border: 1px solid var(--lumo-contrast-20pct);
 }
 
+/* Defining dense variant */
 [theme~="dense"] {
   --lumo-border-radius-s: 0.1em;
   --lumo-border-radius-m: 0.2em;

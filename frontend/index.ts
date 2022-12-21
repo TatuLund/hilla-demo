@@ -11,6 +11,7 @@ window.addEventListener("vaadin-router-location-changed", (e) => {
     const activeRoute = router.location.route as ViewRoute;
     if (activeRoute.title) {
         document.title = lang.getText(uiStore.lang, activeRoute.title);
+
     } else {
         document.title = lang.getText(uiStore.lang, "main-title");
     }
