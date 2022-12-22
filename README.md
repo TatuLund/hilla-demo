@@ -33,6 +33,8 @@ To run from the command line, use `mvn` and open [http://localhost:8080](http://
 - Example of class name generator with vaadin-grid
 - How to integrate 3rd party library, see currency-field.ts
 - Example test story of the list view using TestBench Browser testing
+- Using tooltips
+- Dense theme variant
 
 ## Before running
 
