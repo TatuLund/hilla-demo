@@ -7,15 +7,15 @@ The project is a standard Maven project, so you can import it to your IDE of cho
 
 To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
 
-You can login with the following credentials:
+You can log in with the following credentials:
 - user/user with role USER
 - admin/admin with role ADMIN
 
 ## This application is demoing various aspects of Hilla framework
 
 - Lazy loading data from server
-- Using server side filterign of data
-- Securing statelss Hilla app using Spring Security
+- Using server side filtering of data
+- Securing stateless Hilla app using Spring Security
 - Demonstrating role based authorities, method level end point security
 - Styling using Lumo utility classes
 - Handling url parameters of the route
@@ -73,6 +73,30 @@ mvn spring-boot:run
 | `src/`                                     | Server-side source directory                                                                                           |
 | &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                          |
 | &nbsp;&nbsp;&nbsp;&nbsp; `data/`            | Entities and endpoints directory (Java)                                                                                              |
+
+## Exception:
+- If you have this error:
+
+```[TypeScript] Module '"/Users/pczuczor/Projects/hilla-demo/node_modules/.pnpm/@types+cleave.js@1.4.7/node_modules/@types/cleave.js/index"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+4 | import { ifDefined } from "lit-html/directives/if-defined.js";
+5 | import { customElement, property, query } from "lit/decorators.js";
+> 6 | import Cleave from "cleave.js";
+|        ^^^^^^
+7 | import { CleaveOptions } from "cleave.js/options";
+```
+Or here:
+```
+import { uiStore } from './stores/app-store';
+```
+
+- Then please add `"allowSyntheticDefaultImports": true` to your tsconfig.json `compilerOptions` part (in your project root)
+```
+"compilerOptions": {
+  "allowSyntheticDefaultImports": true,
+  ...
+  }
+```
+
 
 ## What next?
 
