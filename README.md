@@ -7,6 +7,10 @@ The project is a standard Maven project, so you can import it to your IDE of cho
 
 To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
 
+You can login with the following credentials:
+- user/user with role USER
+- admin/admin with role ADMIN
+
 ## This application is demoing various aspects of Hilla framework
 
 - Lazy loading data from server
