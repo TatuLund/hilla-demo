@@ -23,7 +23,7 @@ import com.vaadin.flow.spring.security.VaadinWebSecurity;
 @Configuration
 public class SecurityConfig extends VaadinWebSecurity {
 
-    // create file "config/secrests/application.properties"
+    // create file "config/secrets/application.properties"
     // use this command to generate new random secret for your app:
     // openssl rand -base64 32
     @Value("${com.example.application.app.secret}")
