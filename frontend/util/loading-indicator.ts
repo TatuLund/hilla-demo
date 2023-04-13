@@ -5,6 +5,17 @@ export function loadingIndicator(percent : number) : void {
     indicator.style.opacity = "1";
     indicator.style.animation = "unset";
     indicator.style.width = percent+"%";
+    indicator.ariaLive = 'assertive';
+    const label = document.createElement('label');
+    label.innerText = 'Loading '+percent+"%";
+    label.id = 'indicator-label'
+    label.style.top = '-1000px';
+    label.style.left = '-1000px';
+    label.style.position = 'absolute';
+    label.role = 'alert';
+    indicator.innerText = '';
+    indicator.appendChild(label);
+    indicator.setAttribute('aria-labelledby','indicator-label');
   } else {
     indicator.style.display = "none";
   }

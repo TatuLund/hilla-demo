@@ -4,23 +4,36 @@ import dateFnsParse from 'date-fns/parse';
 import { uiStore } from 'Frontend/stores/app-store';
 import { lang } from './localization';
 
-const formatDateIso8601 = (dateParts: DatePickerDate): string => {
+export const formatDateIso8601 = (dateParts: DatePickerDate): string => {
     const { year, month, day } = dateParts;
     const date = new Date(year, month, day);
   
     return dateFnsFormat(date, lang.getDateFormat(uiStore.lang, false));
 };
-  
-// Allow the user to input the date using both the two digit
-// and four digit year format.
-const parseDateIso8601 = (inputValue: string): DatePickerDate => {
+
+export const checkAllowedFormat = (inputValue: string): boolean  => {
     var date : Date;
     if (inputValue.length > 8) {
         date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang), new Date());
     } else {
         date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang, true), new Date());
     }
+    if (date.toDateString() === "Invalid Date") {
+        return false;
+    }
+    return true;
+};
 
+
+// Allow the user to input the date using both the two digit
+// and four digit year format.
+export const parseDateIso8601 = (inputValue: string): DatePickerDate => {
+    var date : Date;
+    if (inputValue.length > 8) {
+        date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang), new Date());
+    } else {
+        date = dateFnsParse(inputValue, lang.getDateFormat(uiStore.lang, true), new Date());
+    }
     return { year: date.getFullYear(), month: date.getMonth(), day: date.getDate() };
 };
   

@@ -20,9 +20,10 @@ import { PastOrPresentWeekdayAndRequired } from "Frontend/util/validators";
 import { lang } from "Frontend/util/localization";
 import { statusSelectRenderer } from "./renderers";
 import { selectRenderer } from "@vaadin/select/lit";
-import "Frontend/components/currency-field.ts";
 import "Frontend/components/live-currency-field.ts";
 import "@vaadin/number-field";
+import { checkAllowedFormat } from "Frontend/util/datepicker-util";
+import { loadingIndicator } from "Frontend/util/loading-indicator";
 
 @customElement("contact-form")
 export class ContactForm extends View {
@@ -46,6 +47,14 @@ export class ContactForm extends View {
     this.companyBox.inputElement.addEventListener("keypress", () =>
       this.companyBox.open()
     );
+    this.datePicker.inputElement.addEventListener('change', e => {
+      const elm = e.target as HTMLInputElement;
+      if (!checkAllowedFormat(elm.value)) {
+        this.datePicker.helperText = lang.getText(uiStore.lang, "datepicker-format");
+      } else {
+        this.datePicker.helperText = null;
+      }
+    })
   }
 
   updated() {
@@ -97,6 +106,7 @@ export class ContactForm extends View {
         label=${lang.getText(uiStore.lang, "company")}
         .items=${crmStore.companies}
         auto-open-disabled
+        clear-button-visible
         ?disabled=${uiStore.offline}
         ?readonly=${!uiStore.isAdmin()}
         item-label-path="name"
@@ -135,7 +145,8 @@ export class ContactForm extends View {
           slot="tooltip"
           text=${lang.getText(uiStore.lang, "currency-field-tooltip")}
         ></vaadin-tooltip
-      ></live-currency-field>
+      >
+    </live-currency-field>
       <div
         class="buttons border-contrast-30 border-t mt-auto flex justify-between"
       >
