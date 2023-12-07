@@ -1,7 +1,7 @@
 import { Commands, Context, Route, Router } from '@vaadin/router';
 import './views/dashboard/dashboard-view';
 import './views/list/list-view';
-import "./main-layout.ts";
+import "./main-layout";
 import "./views/login/login-view";
 import { uiStore } from './stores/app-store';
 import { autorun } from 'mobx';

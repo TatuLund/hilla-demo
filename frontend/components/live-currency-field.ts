@@ -104,7 +104,7 @@ export class LiveCurrencyField extends LitElement {
                 @change=${this.handleChange}
                 .label=${this.label}
                 .helperText=${this.helperText}
-                .errorMessage=${this.errorMessage}
+                .errorMessage=${ifDefined(this.errorMessage)}
                 disabled=${ifDefined(this.disabled)}
                 readonly=${ifDefined(this.readonly)}
                 invalid=${ifDefined(this.invalid)}

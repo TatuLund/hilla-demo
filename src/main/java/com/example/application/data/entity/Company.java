@@ -1,7 +1,7 @@
 package com.example.application.data.entity;
 
-import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
 
 import com.example.application.data.AbstractEntity;
 import dev.hilla.Nonnull;

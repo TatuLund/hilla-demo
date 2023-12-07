@@ -3,8 +3,8 @@ package com.example.application.data.validators;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class CustomDateValidator implements 
   ConstraintValidator<CustomDateConstraint, LocalDate> {

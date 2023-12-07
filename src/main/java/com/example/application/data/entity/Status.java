@@ -1,6 +1,6 @@
 package com.example.application.data.entity;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 import com.example.application.data.AbstractEntity;
 import dev.hilla.Nonnull;

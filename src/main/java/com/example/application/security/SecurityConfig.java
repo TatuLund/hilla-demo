@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jose.jws.JwsAlgorithms;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 
@@ -31,38 +31,42 @@ public class SecurityConfig extends VaadinWebSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(
+                authorize -> authorize.requestMatchers(new AntPathRequestMatcher("/images/*.png"),
+                        new AntPathRequestMatcher("/icons/*.png"), new AntPathRequestMatcher("/icons/*.svg"))
+                        .permitAll());
+
         super.configure(http);
 
-        http.sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // Disable creating and using sessions in Spring Security
+        http.sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
         setStatelessAuthentication(http,
                 new SecretKeySpec(Base64.getDecoder().decode(appSecret), JwsAlgorithms.HS256),
                 "com.example.application");
         setLoginView(http, "/login", "/");
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-        web.ignoring().antMatchers("/images/*.png");
-        web.ignoring().antMatchers("/icons/*.png");
-        // Let our flag SVG icons be public so that login-view.ts can show
-        // them before login. Icons are in resources/META-INF/resources folder
-        web.ignoring().antMatchers("/icons/*.svg");
-    }
+    // @Override
+    // public void configure(WebSecurity web) throws Exception {
+    // super.configure(web);
+    // web.ignoring().antMatchers("/images/*.png");
+    // web.ignoring().antMatchers("/icons/*.png");
+    // // Let our flag SVG icons be public so that login-view.ts can show
+    // // them before login. Icons are in resources/META-INF/resources folder
+    // web.ignoring().antMatchers("/icons/*.svg");
+    // }
 
     @Bean
     public UserDetailsManager userDetailsService() {
-        UserDetails user =
-                User.withUsername("user")
-                        .password("{noop}user")
-                        .roles("USER")
-                        .build();
-        UserDetails admin =
-                User.withUsername("admin")
-                        .password("{noop}admin")
-                        .roles("ADMIN")
-                        .build();
+        UserDetails user = User.withUsername("user")
+                .password("{noop}user")
+                .roles("USER")
+                .build();
+        UserDetails admin = User.withUsername("admin")
+                .password("{noop}admin")
+                .roles("ADMIN")
+                .build();
         return new InMemoryUserDetailsManager(user, admin);
     }
 }

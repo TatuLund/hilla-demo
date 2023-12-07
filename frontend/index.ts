@@ -19,7 +19,8 @@ window.addEventListener("vaadin-router-location-changed", (e) => {
 
 Binder.interpolateMessageCallback = (message, validator, binderNode) => {
     // Try to find a translation for the specific type of validator
-    let key = `validationError.${validator.constructor.name}`;
+    console.log(validator.message);
+    let key = `validationError.${validator.message}`;
   
     // Special case for DecimalMin and DecimalMax validators to use different message based on "inclusive" property
     if (['validationError.DecimalMin', 'validationError.DecimalMax'].includes(key)) {
