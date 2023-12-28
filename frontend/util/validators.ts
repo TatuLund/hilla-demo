@@ -2,6 +2,7 @@ import { Validator } from "@hilla/form";
 
 export class PastOrPresentWeekdayAndRequired implements Validator<string> {
   message = "date input is not valid";
+  name = "PastOrPresentWeekdayAndRequired";
   validate = (date: string) => this.pastOrPresentWeekdayAndRequired(date);
 
   pastOrPresentWeekdayAndRequired(date: string): boolean {

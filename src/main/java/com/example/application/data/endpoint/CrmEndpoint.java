@@ -15,10 +15,10 @@ import com.example.application.data.entity.Contact;
 import com.example.application.data.entity.Status;
 import com.example.application.data.service.CrmService;
 
-import dev.hilla.Endpoint;
+import dev.hilla.BrowserCallable;
 import dev.hilla.Nonnull;
 
-@Endpoint
+@BrowserCallable
 @PermitAll
 public class CrmEndpoint {
 
