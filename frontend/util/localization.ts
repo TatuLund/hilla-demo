@@ -136,6 +136,66 @@ export class Lang {
             "status-customer": "Asiakas",
             "status-closed": "Suljettu (menetetty)",
             "currency-field-tooltip": "Tämä on automaattisesti formatoiva valuuttakenttä"
+        },
+        "de": {
+            "de": "Deutsch",
+            "main-title": "Kundenkontaktverwaltung",
+            "main-logout": "Abmelden",
+            "main-language": "Sprache",
+            "main-zoom-toggle": "Größe wechseln",
+            "menu-dashboard": "Dashboard",
+            "menu-contacts": "Kontaktliste",
+            "button-add": "Kontakt hinzufügen",
+            "button-create": "Erstellen",
+            "button-save": "Speichern",
+            "button-delete": "Löschen",
+            "button-cancel": "Abbrechen",
+            "button-confirm": "Bestätigen",
+            "filter-email": "Nach E-Mail filtern",
+            "first-name": "Vorname",
+            "last-name": "Nachname",
+            "email": "E-Mail",
+            "company": "Unternehmen",
+            "status": "Status",
+            "date": "Datum",
+            "prospect-value": "Prognostizierter Wert",
+            "contact": "Kontakt",
+            "contact-confirm-delete": "Kontakt wird dauerhaft gelöscht",
+            "dashboard-contacts-company": "Kontakte nach Unternehmen",
+            "dashboard-contacts": "Kontakte",
+            "dashboard-yaxis": "Anzahl",
+            "success-save": "Kontakt gespeichert.",
+            "success-delete": "Kontakt gelöscht.",
+            "error-offline": "Offline: Aktualisierung der Daten nicht möglich.",
+            "login-offline": "Sie sind offline. Die Anmeldung ist nur online möglich.",
+            "error-delete": "Löschen des Kontakts fehlgeschlagen.",
+            "error-save": "Speichern des Kontakts fehlgeschlagen.",
+            "dp-today": "Heute",
+            "dp-cancel": "Abbrechen",
+            "dp-week": "Woche",
+            "dp-clear": "Leeren",
+            "dp-calendar": "Kalender",
+            "offline": "Offline",
+            "online": "Online",
+            "datepicker-format": "Datumsformat ist nicht korrekt",
+            "validationError.PastOrPresentWeekdayAndRequired": "Datum ist erforderlich, Datum darf nicht in der Zukunft liegen, Datum muss ein Wochentag sein",
+            "validationError.NotEmpty": "Eingabe ist erforderlich",
+            "validationError.NotNull": "Eingabe ist erforderlich",
+            "validationError.Email": "Eingabe ist keine gültige E-Mail-Adresse",
+            "validationError.PositiveOrZero": "Wert darf nicht negativ sein",
+            "login-title": "Anmelden",
+            "login-username": "Benutzername",
+            "login-password": "Passwort",
+            "login-submit": "Anmelden",
+            "login-forgotPassword": "Passwort vergessen",
+            "login-error-title": "Falscher Benutzername oder falsches Passwort",
+            "login-error-message": "Überprüfen Sie, ob Sie den Benutzernamen und das Passwort korrekt eingegeben haben, und versuchen Sie es erneut.",
+            "status-imported": "Importierter Lead",
+            "status-notcontacted": "Nicht kontaktiert",
+            "status-contacted": "Kontaktiert",
+            "status-customer": "Kunde",
+            "status-closed": "Geschlossen (verloren)",
+            "currency-field-tooltip": "Dies ist ein Währungsfeld mit automatischer Formatierung"
         }
     };
 
@@ -149,6 +209,11 @@ export class Lang {
             'Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu',
             'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu',
             'Lokakuu', 'Marraskuu', 'Joulukuu'
+        ],
+        "de": [
+            'Januar', 'Februar', 'März', 'April', 'Mai',
+            'Juni', 'Juli', 'August', 'September',
+            'Oktober', 'November', 'Dezember'
         ]
     };
 
@@ -161,6 +226,8 @@ export class Lang {
             'Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko',
             'Torstai', 'Perjantai', 'Lauantai'
         ],
+        "de": ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch',
+            'Donnerstag', 'Freitag', 'Samstag']
     };
 
     private weekdaysShort: Weekdays = {
@@ -170,21 +237,25 @@ export class Lang {
         "fi": [
             'Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'
         ],
+        "de": ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']
     };
 
     private weekStarts: WeekStarts = {
         "us": 0,
         "fi": 1,
+        "de": 1
     }
 
     private dateFormats: DateFormats = {
         "us": "MM-dd-yyyy",
-        "fi": "dd.MM.yyyy"
+        "fi": "dd.MM.yyyy",
+        "de": "dd.MM.yyyy"
     }
 
     private dateFormatsShort: DateFormats = {
         "us": "MM-dd-yy",
-        "fi": "dd.MM.yy"
+        "fi": "dd.MM.yy",
+        "de": "dd.MM.yy"
     }
 
     private languages : Language[] = [];
